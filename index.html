@@ -1,14 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <title>elevader!</title>
-<link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
-<head>
+<link rel="stylesheet" type="text/css" href="css/style.css"
+	media="screen" />
+<script data-require="jquery"
+	src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script data-require="jquery"
+	src="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.js"></script>
 </head>
 <body>
 	<h1>elevader!</h1>
-	<canvas id="board" width="150" height="150">I'm sorry.  You can't play the game on this browser.  Try a newer browser.</canvas>
+	<canvas id="board">I'm sorry.  You can't play the game on this browser.  Try a newer browser.</canvas>
+
+	<img id="sprites" src="img/sprites.png"
+		alt="Could not load sprites.png!" />
+
+	<span id="messages"></span>
+
+	<script src="js/verge.min.js"></script>
 	<script src="js/grid.js"></script>
 	<script src="js/elevader.js"></script>
 </body>

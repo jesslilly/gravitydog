@@ -13,7 +13,7 @@ var Grid = function(width, height, unit) {
 };
 Grid.prototype.paint = function(ctx) {
 
-	ctx.fillStyle = "black";
+	ctx.strokeStyle = "white";
 
 	// Paint vertical lines across.
 	for ( var x = 0; x <= this.getWidth(); x += this.getUnit()) {

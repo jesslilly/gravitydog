@@ -3,37 +3,59 @@ body {
 }
 
 #board {
-	width: 150px;
-	height: 150px;
 	border: 1px solid gray;
+}
+
+#sprites {
+	display: none;
 }
 
 /* Vertical mobile */
 @media screen and (min-width: 320px) and (orientation: portrait) {
 	#board {
-		width: 100%;
-		height: 80%;
+		border: 1px solid purple;
 	}
 }
 
 @media screen and (min-width: 320px) and (orientation: landscape) {
 	#board {
-		width: 80%;
-		height: 100%;
+		border: 1px solid blue;
 	}
 }
 /* Tablet */
 @media ( min-width : 480px) {
 	#board {
-		width: 320px;
-		height: 100%;
+		border: 1px solid green;
 	}
 }
 
 /* Desktop */
 @media ( min-width : 640px) {
 	#board {
-		width: 150px;
-		height: 150px;
+		border: 1px solid red;
 	}
 }
+
+#header #hlogo {
+	height: 61px;
+	width: 250px;
+	float: left;
+	margin-top: 10px;
+}
+
+#hlogo a,.envelope-on,.envelope-off,.vote-up-off,.vote-up-on,.vote-down-off,.vote-down-on,.star-on,.star-off,.comment-up-off,.comment-up-on,.comment-flag,.edited-yes,.feed-icon,.statsarrow,.vote-accepted-off,.vote-accepted-on,.vote-accepted-bounty,.badge-earned-check,.delete-tag,.grippie,.expander-arrow-hide,.expander-arrow-show,.expander-arrow-small-hide,.expander-arrow-small-show,.anonymous-gravatar,.badge1,.badge2,.badge3,.add-interesting-tag-on,.add-interesting-tag-off,.fb-share,.twitter-share,.gp-share
+	{
+	background-image: url('img/sprites.png?v=6');
+	background-repeat: no-repeat;
+	overflow: hidden;
+}
+
+#hlogo a {
+	width: 250px;
+	height: 61px;
+	display: block;
+	background-position: 0px 0px;
+	text-indent: -999999em;
+	float: left;
+}
+
