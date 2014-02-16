@@ -11,7 +11,6 @@ var Grid = (function() {
 		unit = u;
 	};
 
-	console.log("declare grid functions.");
 	Grid.prototype.getWidth = function() {
 		return width;
 	};

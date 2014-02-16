@@ -23,13 +23,25 @@ $(document).ready(function() {
 		canvas.height = smaller;
 		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
-		ctx.fillStyle = "rgb(240,240,240)";
-		ctx.fillRect(0, 0, canvas.width, canvas.height);
+		// Create an animator. Refresh at 17ms which is 60Hz.
+		var a = new Animator(ctx, 17);
 		
+		// Draw background.
+		var bg = new Sprite(0, 0, canvas.width, canvas.height);
+		bg.update = function() {};
+		a.add(0, bg);
+		
+		a.add(1, new Sprite(10, 0, 3, 3));
+		a.add(1, new Sprite(0, 10, 5, 5));
+		a.go();
+
+		// Draw star.
 		ctx.drawImage(sprites, 0, 0, 44, 44, 20, 20, 44, 44);
 
+		// draw grid.
 		var grid = new Grid(canvas.width, canvas.height, 10);
 		grid.draw(ctx);
+
 	};
 
 	sprites.addEventListener("load", function() {
