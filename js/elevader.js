@@ -29,7 +29,7 @@ $(document).ready(function() {
 		ctx.drawImage(sprites, 0, 0, 44, 44, 20, 20, 44, 44);
 
 		var grid = new Grid(canvas.width, canvas.height, 10);
-		grid.paint(ctx);
+		grid.draw(ctx);
 	};
 
 	sprites.addEventListener("load", function() {
