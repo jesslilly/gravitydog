@@ -25,12 +25,13 @@ $(document).ready(function() {
 
 		// Create an animator. Refresh at 17ms which is 60Hz.
 		var a = new Animator(ctx, 17);
-		
+
 		// Draw background.
 		var bg = new Sprite(0, 0, canvas.width, canvas.height);
-		bg.update = function() {};
+		bg.update = function() {
+		};
 		a.add(0, bg);
-		
+
 		a.add(1, new Sprite(10, 0, 3, 3));
 		a.add(1, new Sprite(0, 10, 5, 5));
 		a.add(2, new Person(100, 100, 10, 10));
