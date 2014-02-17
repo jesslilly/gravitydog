@@ -11,3 +11,8 @@ Person.prototype.update = function(layer, sprite) {
 	this.y += (Math.random() - .5);
 };
 
+Person.prototype.click = function(layer, sprite) {
+	this.width -= 1;
+	this.height -= 1;
+};
+

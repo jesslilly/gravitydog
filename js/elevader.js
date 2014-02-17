@@ -34,7 +34,9 @@ $(document).ready(function() {
 
 		a.add(1, new Sprite(10, 0, 3, 3));
 		a.add(1, new Sprite(0, 10, 5, 5));
-		a.add(2, new Person(100, 100, 10, 10));
+		var person = new Person(100, 100, 20, 20);
+		person.setClickable(true);
+		a.add(2, person);
 		a.go();
 
 		// Draw star.
