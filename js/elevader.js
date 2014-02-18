@@ -42,12 +42,12 @@ $(document).ready(function() {
 		}
 
 		// Add the dog!
-		var dog = new SpaceDog(canvas.width / 2, canvas.width / 2, 60, 60);
+		var dog = new SpaceDog(canvas.width / 2, canvas.width / 2, 118, 88);
 		dog.setClickable(true);
 		dog.setVector(45, 1);
 		// TODO: Move this to the Sprite class.
 		dog.draw = function(ctx) {
-			ctx.drawImage(sprites, 0, 0, 117, 101, this.x, this.y, this.width, this.height);
+			ctx.drawImage(sprites, 0, 0, 118, 88, this.x, this.y, this.width, this.height);
 		};
 		a.add(1, dog);
 		a.go();
