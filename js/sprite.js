@@ -2,13 +2,15 @@ console.log("sprite.js loaded");
 
 var Sprite = (function() {
 
-	var Sprite = function(ix, iy, w, h) {
+	var Sprite = function(ix, iy, w, h, color) {
 		this.x = ix;
 		this.y = iy;
 		this.width = w;
 		this.height = h;
 		this.clickable = false;
-		this.color = "rgb(40," + Math.round(Math.random() * 256) + ",80)";
+		
+		// rgba(255, 255, 0, .5) or "#00A308"
+		this.color = color;
 		// Velocity
 		this.vx = 0;
 		this.vy = 0;

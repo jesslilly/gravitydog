@@ -1,7 +1,7 @@
 console.log("zsprites.js loaded");
 
 var SpaceDog = function(ix, iy, w, h) {
-	Sprite.call(this, ix, iy, w, h);
+	Sprite.call(this, ix, iy, w, h, "rgba(255,255,255,.7)");
 };
 SpaceDog.prototype = new Sprite();
 
@@ -16,7 +16,7 @@ SpaceDog.prototype.click = function(layer, sprite) {
 	this.aboutFace();
 
 	// Shrink
-	if (this.width > 10) {
+	if (this.width > 20) {
 		this.width -= 3;
 		this.height -= 3;
 	}

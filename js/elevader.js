@@ -29,19 +29,25 @@ $(document).ready(function() {
 		var a = new Animator(ctx, 17);
 
 		// Draw background.
-		var bg = new Sprite(0, 0, canvas.width, canvas.height);
+		var bg = new Sprite(0, 0, canvas.width, canvas.height, "#000000");
 		bg.update = function() {
 		};
 		a.add(0, bg);
-		
-		var tracer = new Sprite(10, 0, 3, 3);
-		tracer.setVelocity(.2,.2);
 
-		a.add(1, tracer);
-		var dog = new SpaceDog(canvas.width / 2, canvas.width / 2, 40, 40);
+		// Add star field!
+		for ( var idx = 0; idx < 10; idx++) {
+			var star = new Sprite(Math.random() * canvas.width, Math.random() * canvas.height, 1, 1, "#FFFFFF");
+			star.setVelocity(.2, .2);
+			a.add(0, star);
+		}
+
+		var dog = new SpaceDog(canvas.width / 2, canvas.width / 2, 60, 60);
 		dog.setClickable(true);
-		dog.setVector(45,1);
-		a.add(2, dog);
+		dog.setVector(45, 1);
+		dog.draw = function(ctx) {
+			ctx.drawImage(sprites, 0, 0, 117, 101, this.x, this.y, this.width, this.height);
+		};
+		a.add(1, dog);
 		a.go();
 
 		// Draw star.
