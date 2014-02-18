@@ -4,7 +4,12 @@ elevader
 elevader game
 
 # TODO
-1. Get POC working. See if it's fun.
+2. stars bigger
+3. dog bigger
+4. click area bigger for mobile
+5. scale canvas with no antialiasing instead of resizing canvas.
+6. Add the earth.
+6. create a button js object.
 1. Get good graphics. Going with png, not svg. (speed wins over scaling)
 1. Intro screen
 1. Scale to desktop, tablet size
