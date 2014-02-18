@@ -21,6 +21,8 @@ $(document).ready(function() {
 		var smaller = (vpw > vph) ? vph : vpw;
 		canvas.width = smaller;
 		canvas.height = smaller;
+		Sprite.bWidth = canvas.width;
+		Sprite.bHeight = canvas.height;
 		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
 		// Create an animator. Refresh at 17ms which is 60Hz.
@@ -31,12 +33,15 @@ $(document).ready(function() {
 		bg.update = function() {
 		};
 		a.add(0, bg);
+		
+		var tracer = new Sprite(10, 0, 3, 3);
+		tracer.setVelocity(.2,.2);
 
-		a.add(1, new Sprite(10, 0, 3, 3));
-		a.add(1, new Sprite(0, 10, 5, 5));
-		var person = new Person(100, 100, 40, 40);
-		person.setClickable(true);
-		a.add(2, person);
+		a.add(1, tracer);
+		var dog = new SpaceDog(canvas.width / 2, canvas.width / 2, 40, 40);
+		dog.setClickable(true);
+		dog.setVector(45,1);
+		a.add(2, dog);
 		a.go();
 
 		// Draw star.

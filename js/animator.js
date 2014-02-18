@@ -17,7 +17,7 @@ var Animator = (function() {
 		// Set up the click handler.
 		var xoffset = $("#board").offset().left + 2;
 		var yoffset = $("#board").offset().top + 2;
-		$("#board").click(function(e) {
+		$("#board").mousedown(function(e) {
 			var x = e.pageX - xoffset;
 			var y = e.pageY - yoffset;
 			console.log("Click at " + x + "," + y);
