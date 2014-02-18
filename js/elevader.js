@@ -41,9 +41,11 @@ $(document).ready(function() {
 			a.add(0, star);
 		}
 
+		// Add the dog!
 		var dog = new SpaceDog(canvas.width / 2, canvas.width / 2, 60, 60);
 		dog.setClickable(true);
 		dog.setVector(45, 1);
+		// TODO: Move this to the Sprite class.
 		dog.draw = function(ctx) {
 			ctx.drawImage(sprites, 0, 0, 117, 101, this.x, this.y, this.width, this.height);
 		};
@@ -51,11 +53,11 @@ $(document).ready(function() {
 		a.go();
 
 		// Draw star.
-		ctx.drawImage(sprites, 0, 0, 44, 44, 20, 20, 44, 44);
+//		ctx.drawImage(sprites, 0, 0, 44, 44, 20, 20, 44, 44);
 
 		// draw grid.
-		var grid = new Grid(canvas.width, canvas.height, 10);
-		grid.draw(ctx);
+//		var grid = new Grid(canvas.width, canvas.height, 10);
+//		grid.draw(ctx);
 
 	};
 
