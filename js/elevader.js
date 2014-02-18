@@ -34,7 +34,7 @@ $(document).ready(function() {
 
 		a.add(1, new Sprite(10, 0, 3, 3));
 		a.add(1, new Sprite(0, 10, 5, 5));
-		var person = new Person(100, 100, 20, 20);
+		var person = new Person(100, 100, 40, 40);
 		person.setClickable(true);
 		a.add(2, person);
 		a.go();

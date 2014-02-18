@@ -37,26 +37,12 @@ body {
 	}
 }
 
-#header #hlogo {
-	height: 61px;
-	width: 250px;
-	float: left;
-	margin-top: 10px;
+/* Prevent text selection */
+/* http://stackoverflow.com/questions/880512/prevent-text-selection-after-double-click */
+/* http://stackoverflow.com/questions/7018324/how-do-i-stop-highlighting-of-a-div-element-when-double-clicking-on */
+body {
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
 }
-
-#hlogo a,.envelope-on,.envelope-off,.vote-up-off,.vote-up-on,.vote-down-off,.vote-down-on,.star-on,.star-off,.comment-up-off,.comment-up-on,.comment-flag,.edited-yes,.feed-icon,.statsarrow,.vote-accepted-off,.vote-accepted-on,.vote-accepted-bounty,.badge-earned-check,.delete-tag,.grippie,.expander-arrow-hide,.expander-arrow-show,.expander-arrow-small-hide,.expander-arrow-small-show,.anonymous-gravatar,.badge1,.badge2,.badge3,.add-interesting-tag-on,.add-interesting-tag-off,.fb-share,.twitter-share,.gp-share
-	{
-	background-image: url('img/sprites.png?v=6');
-	background-repeat: no-repeat;
-	overflow: hidden;
-}
-
-#hlogo a {
-	width: 250px;
-	height: 61px;
-	display: block;
-	background-position: 0px 0px;
-	text-indent: -999999em;
-	float: left;
-}
-

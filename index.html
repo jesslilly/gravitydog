@@ -11,13 +11,13 @@
 	src="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.js"></script>
 </head>
 <body>
-	<h1>elevader!</h1>
-	<canvas id="board">I'm sorry.  You can't play the game on this browser.  Try a newer browser.</canvas>
+	<div unselectable="on" id="content">
+		<h1>elevader!</h1>
+		<canvas id="board">I'm sorry.  You can't play the game on this browser.  Try a newer browser.</canvas>
 
-	<img id="sprites" src="img/sprites.png"
-		alt="Could not load sprites.png!" />
-
-	<span id="messages"></span>
+		<img id="sprites" src="img/sprites.png"
+			alt="Could not load sprites.png!" /> <span id="messages"></span>
+	</div>
 
 	<script src="js/verge.min.js"></script>
 	<script src="js/vg.js"></script>

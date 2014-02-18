@@ -7,12 +7,12 @@ var Person = function(ix, iy, w, h) {
 Person.prototype = new Sprite();
 
 Person.prototype.update = function(layer, sprite) {
-	this.x += (Math.random() - .5);
-	this.y += (Math.random() - .5);
+	this.x += (Math.random() - .5) * 3;
+	this.y += (Math.random() - .5) * 3;
 };
 
 Person.prototype.click = function(layer, sprite) {
-	this.width -= 1;
-	this.height -= 1;
+	this.width -= 3;
+	this.height -= 3;
 };
 
