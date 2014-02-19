@@ -4,6 +4,8 @@ elevader
 elevader game
 
 # TODO
+1. Make canvas default size the average smart phone size
+1. canvas.addEventListener("touchstart", handleStart, false);
 5. scale canvas with no antialiasing instead of resizing canvas.
 6. Add the earth.
 6. create a button js object.
