@@ -7,7 +7,6 @@ var Sprite = (function() {
 		this.y = iy;
 		this.width = w;
 		this.height = h;
-		this.clickable = false;
 		
 		// rgba(255, 255, 0, .5) or "#00A308"
 		this.color = color;
@@ -28,10 +27,6 @@ var Sprite = (function() {
 		ctx.fillRect(Math.round(this.x), Math.round(this.y), this.width,
 				this.height);
 	};
-
-	Sprite.prototype.setClickable = function(c) {
-		this.clickable = c;
-	};
 	Sprite.prototype.setVelocity = function(vx, vy) {
 		this.vx = vx;
 		this.vy = vy;
@@ -43,9 +38,6 @@ var Sprite = (function() {
 		this.vy = vel.vy;
 		this.dir = dir;
 		this.speed = speed;
-	};
-	Sprite.prototype.isClickable = function() {
-		return this.clickable;
 	};
 
 	return Sprite;

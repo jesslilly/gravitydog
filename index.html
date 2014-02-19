@@ -5,14 +5,10 @@
 <title>space dog</title>
 <link rel="stylesheet" type="text/css" href="css/style.css"
 	media="screen" />
-<script data-require="jquery"
-	src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script data-require="jquery"
-	src="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.js"></script>
 </head>
 <body>
 	<div unselectable="on" id="content">
-		<canvas id="board">I'm sorry.  You can't play the game on this browser.  Try a newer browser.</canvas>
+		<canvas id="canvas" width="400" height="400">I'm sorry.  You can't play the game on this browser.  Try a newer browser.</canvas>
 
 		<img id="sprites" src="img/sprites.png"
 			alt="Could not load sprites.png!" /> <span id="messages"></span>
@@ -21,6 +17,7 @@
 	<script src="js/verge.min.js"></script>
 	<script src="js/vg.js"></script>
 	<script src="js/sprite.js"></script>
+	<script src="js/clickable.js"></script>
 	<script src="js/animator.js"></script>
 	<script src="js/grid.js"></script>
 	<script src="js/zsprites.js"></script>

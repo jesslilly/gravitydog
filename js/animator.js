@@ -15,28 +15,28 @@ var Animator = (function() {
 		self = this;
 
 		// Set up the click handler.
-		var xoffset = $("#board").offset().left + 2;
-		var yoffset = $("#board").offset().top + 2;
-		$("#board").mousedown(function(e) {
+		var canvas = document.getElementById('canvas');
+		var xoffset = canvas.offsetLeft + 2;
+		var yoffset = canvas.offsetTop + 2;
+		canvas.onmousedown = function(e) {
 			var x = e.pageX - xoffset;
 			var y = e.pageY - yoffset;
 			console.log("Click at " + x + "," + y);
-			self.onClick(x,y);
-		});
+			self.onClick(x, y);
+		};
 	};
 
 	Animator.prototype.onClick = function(cx, cy) {
-		clickables.forEach(function(sprite) {
-			if (vg.hitTest(cx, cy, sprite.x, sprite.y, sprite.width,
-					sprite.height)) {
-				sprite.click();
+		clickables.forEach(function(clickable) {
+			if (clickable.clickTest(cx, cy)) {
+				clickable.click();
 			}
 		});
 	};
 
 	Animator.prototype.add = function(layer, sprite) {
 		sprites[layer].push(sprite);
-		if (sprite.isClickable()) {
+		if (sprite instanceof Clickable) {
 			clickables.push(sprite);
 		}
 		return this;

@@ -1,23 +1,26 @@
 console.log("zsprites.js loaded");
 
 var SpaceDog = function(ix, iy, w, h) {
-	Sprite.call(this, ix, iy, w, h, "rgba(255,255,255,.7)");
+	Clickable.call(this, ix, iy, w, h, "rgba(255,255,255,.7)");
+	if (vg.isMobile()) {
+		this.setPadding(10);
+	}
 };
-SpaceDog.prototype = new Sprite();
+SpaceDog.prototype = new Clickable();
 
 // SpaceDog.prototype.update = function(layer, sprite) {
 // this.x += (Math.random() - .5) * 3;
 // this.y += (Math.random() - .5) * 3;
 // };
 
-SpaceDog.prototype.click = function(layer, sprite) {
+SpaceDog.prototype.click = function() {
 
 	// Turn around
 	this.aboutFace();
 
 	// Shrink
 	if (this.width > 20) {
-		this.width -= 3;
+		this.width -= 4;
 		this.height -= 3;
 	}
 };

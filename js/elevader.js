@@ -1,16 +1,13 @@
 console.log("elevader.js loaded");
 
-$(document).ready(function() {
-	var sprites = $("#sprites")[0];
+(function() {
+	var sprites = document.getElementById("sprites");
 
 	var main = function() {
-		var canvas = $('#board')[0];
+		var canvas = document.getElementById('canvas');
 
-		var message = function(msg) {
-			$('#messages').text(msg);
-		};
 		if (!canvas.getContext) {
-			message("Shucks!  Try a different browser please?");
+			alert("Shucks!  Try a different browser please?");
 		}
 
 		var ctx = canvas.getContext('2d');
@@ -21,6 +18,10 @@ $(document).ready(function() {
 		var smaller = (vpw > vph) ? vph : vpw;
 		canvas.width = smaller;
 		canvas.height = smaller;
+		
+		// TODO: This works, but the click coordinates now need to scale also.
+//		canvas.style.width = smaller + "px";
+//		canvas.style.height = smaller + "px";
 		Sprite.bWidth = canvas.width;
 		Sprite.bHeight = canvas.height;
 		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -36,16 +37,15 @@ $(document).ready(function() {
 
 		// Add star field!
 		for ( var idx = 0; idx < 10; idx++) {
-			var star = new Sprite(Math.random() * canvas.width, Math.random() * canvas.height, 1, 1, "#FFFFFF");
-			star.setVelocity(.2, .2);
+			var star = new Sprite(Math.random() * canvas.width, Math.random() * canvas.height, 3, 3, "#FFFFFF");
+			star.setVelocity(.1, 0);
 			a.add(0, star);
 		}
 
 		// Add the dog!
 		var dog = new SpaceDog(canvas.width / 2, canvas.width / 2, 118, 88);
-		dog.setClickable(true);
 		dog.setVector(45, 1);
-		// TODO: Move this to the Sprite class.
+		// TODO: Move images to the Sprite class.
 		dog.draw = function(ctx) {
 			ctx.drawImage(sprites, 0, 0, 118, 88, this.x, this.y, this.width, this.height);
 		};
@@ -61,8 +61,9 @@ $(document).ready(function() {
 
 	};
 
-	sprites.addEventListener("load", function() {
-		main();
-	}, false);
+//	sprites.addEventListener("load", function() {
+//		main();
+//	}, false);
+	main();
 
-});
+})();

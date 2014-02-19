@@ -4,14 +4,13 @@ elevader
 elevader game
 
 # TODO
-2. stars bigger
-3. dog bigger
 4. click area bigger for mobile
 5. scale canvas with no antialiasing instead of resizing canvas.
 6. Add the earth.
 7. rip out jquery mobile.  Not really needed.
 6. create a button js object.
 1. shrink of space dog is not to scale.
+2. stars image
 1. Get good graphics. Going with png, not svg. (speed wins over scaling)
 1. rename repo to gavity dog.
 1. Keep score
