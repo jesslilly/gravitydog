@@ -4,12 +4,11 @@ elevader
 elevader game
 
 # TODO
-1. Make canvas default size the average smart phone size
-1. canvas.addEventListener("touchstart", handleStart, false);
-5. scale canvas with no antialiasing instead of resizing canvas.
+1. Create Prop object for a sprite that does not move.
 6. Add the earth.
-6. create a button js object.
 2. stars image
+5. scale canvas with no antialiasing instead of resizing canvas.
+6. create a button js object.
 1. Get good graphics. Going with png, not svg. (speed wins over scaling)
 1. rename repo to gavity dog.
 1. Keep score
@@ -23,6 +22,8 @@ elevader game
 4. click area bigger for mobile
 7. rip out jquery mobile.  Not really needed.
 1. shrink of space dog is not to scale.
+1. Make canvas default size the average smart phone size
+1. canvas.addEventListener("touchstart", handleStart, false);
 
 # Ideas
 * Points are eggs, or waffles

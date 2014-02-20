@@ -18,12 +18,19 @@ var Animator = (function() {
 		var canvas = document.getElementById('canvas');
 		var xoffset = canvas.offsetLeft + 2;
 		var yoffset = canvas.offsetTop + 2;
-		canvas.onmousedown = function(e) {
+		var click = function(e) {
 			var x = e.pageX - xoffset;
 			var y = e.pageY - yoffset;
 			console.log("Click at " + x + "," + y);
 			self.onClick(x, y);
 		};
+		if (canvas.addEventListener) {
+			canvas.addEventListener("mousedown", click, false);
+			canvas.addEventListener("touchstart", click, false);
+		} else if (canvas.attachEvent) {
+			canvas.attachEvent("onmousedown", click);
+			canvas.attachEvent("ontouchstart", click);
+		}
 	};
 
 	Animator.prototype.onClick = function(cx, cy) {
