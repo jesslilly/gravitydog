@@ -3,19 +3,16 @@ console.log("sprite.js loaded");
 var Sprite = (function() {
 
 	var Sprite = function(ix, iy, w, h, color) {
-		this.x = ix;
-		this.y = iy;
-		this.width = w;
-		this.height = h;
-		
-		// rgba(255, 255, 0, .5) or "#00A308"
-		this.color = color;
+		Prop.call(this, ix, iy, w, h, color);
+
 		// Velocity
 		this.vx = 0;
 		this.vy = 0;
 		this.speed = 0;
 		this.dir = 0;
 	};
+
+	Sprite.prototype = new Prop();
 
 	Sprite.prototype.update = function(layer, sprite) {
 		this.x += this.vx;
@@ -24,8 +21,7 @@ var Sprite = (function() {
 
 	Sprite.prototype.draw = function(ctx) {
 		ctx.fillStyle = this.color;
-		ctx.fillRect(Math.round(this.x), Math.round(this.y), this.width,
-				this.height);
+		ctx.fillRect(Math.round(this.x), Math.round(this.y), this.width, this.height);
 	};
 	Sprite.prototype.setVelocity = function(vx, vy) {
 		this.vx = vx;
@@ -48,8 +44,7 @@ Sprite.vectorToVelocity = function(degrees, speed) {
 	var radians = degrees * Math.PI / 180;
 	pair.vy = speed * Math.sin(radians);
 	pair.vx = speed * Math.cos(radians);
-	console.log(degrees + " degrees @ " + speed + "=(" + pair.vx + "," + pair.vy
-			+ ")");
+	console.log(degrees + " degrees @ " + speed + "=(" + pair.vx + "," + pair.vy + ")");
 	return pair;
 };
 

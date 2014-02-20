@@ -41,6 +41,13 @@ console.log("elevader.js loaded");
 			star.setVelocity(.1, 0);
 			a.add(0, star);
 		}
+		
+		// Add the earth!
+		var earth = new Prop(Math.random() * canvas.width, Math.random() * canvas.height, 114, 114);
+		earth.draw = function(ctx) {
+			ctx.drawImage(sprites, 0, 93, 114, 114, this.x, this.y, this.width, this.height);
+		};
+		a.add(1, earth);
 
 		// Add the dog!
 		var dog = new SpaceDog(canvas.width / 2, canvas.width / 2, 118, 88);

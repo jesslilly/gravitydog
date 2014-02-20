@@ -54,7 +54,7 @@ var Animator = (function() {
 			try {
 				sprites.forEach(function(layer) {
 					layer.forEach(function(sprite) {
-						sprite.update();
+						sprite.update && sprite.update();
 						sprite.draw(ctx);
 					});
 				});

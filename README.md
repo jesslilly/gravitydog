@@ -4,8 +4,6 @@ elevader
 elevader game
 
 # TODO
-1. Create Prop object for a sprite that does not move.
-6. Add the earth.
 2. stars image
 5. scale canvas with no antialiasing instead of resizing canvas.
 6. create a button js object.
@@ -24,6 +22,8 @@ elevader game
 1. shrink of space dog is not to scale.
 1. Make canvas default size the average smart phone size
 1. canvas.addEventListener("touchstart", handleStart, false);
+1. Create Prop object for a sprite that does not move.
+6. Add the earth.
 
 # Ideas
 * Points are eggs, or waffles
