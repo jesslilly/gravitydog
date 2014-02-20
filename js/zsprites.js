@@ -49,6 +49,6 @@ SpaceDog.prototype.aboutFace = function() {
 	// Rotate that angle into the correct quadrant.
 	newAngle += (quadrant * 90);
 
-	this.setVector(newAngle, this.speed + .2);
+	this.setVector(newAngle, this.speed + .3);
 
 };

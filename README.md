@@ -5,10 +5,10 @@ Gravity Dog game
 
 # TODO
 6. create a button js object.
-1. change stars to radiate out from the center.  Increase all star speed with each click.
-1. Get good graphics. Going with png, not svg. (speed wins over scaling)
 1. restart screen.
 1. title screen
+1. change stars to radiate out from the center.  Increase all star speed with each click.
+1. Get good graphics. Going with png, not svg. (speed wins over scaling)
 1. rename repo to gavity dog.
 2. stars image
 1. optimize score sprites.

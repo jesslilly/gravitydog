@@ -26,10 +26,20 @@ var Animator = (function() {
 		};
 		if (canvas.addEventListener) {
 			canvas.addEventListener("mousedown", click, false);
-			canvas.addEventListener("touchstart", click, false);
+			canvas.addEventListener("touchstart", function(e) {
+				// This prevents both actions from firing on a mobile.
+				// Also prevents other actions like screen resize which is good!
+				click(e);
+				e.stopPropagation();
+				e.preventDefault();
+			}, false);
 		} else if (canvas.attachEvent) {
 			canvas.attachEvent("onmousedown", click);
-			canvas.attachEvent("ontouchstart", click);
+			canvas.attachEvent("ontouchstart", function(e) {
+				click(e);
+				e.stopPropagation();
+				e.preventDefault();
+			});
 		}
 	};
 
