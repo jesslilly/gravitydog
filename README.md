@@ -4,6 +4,8 @@ Gravity Dog
 Gravity Dog game
 
 # TODO
+1. Bigger score.
+2. Put GD and URL icons on the canvas
 6. create a button js object.
 1. restart screen.
 1. title screen
