@@ -14,12 +14,14 @@ SpaceDog.prototype = new Clickable();
 // };
 
 SpaceDog.prototype.click = function() {
+	
+	vg.scorePlus(1);
 
 	// Turn around
 	this.aboutFace();
 
 	// Shrink
-	if (this.width > 20) {
+	if (this.width > 50) {
 		this.width -= 4;
 		this.height -= 3;
 	}

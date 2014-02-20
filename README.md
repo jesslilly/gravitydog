@@ -1,20 +1,21 @@
-elevader
-========
+Gravity Dog
+===========
 
-elevader game
+Gravity Dog game
 
 # TODO
-2. stars image
-5. scale canvas with no antialiasing instead of resizing canvas.
 6. create a button js object.
+1. change stars to radiate out from the center.  Increase all star speed with each click.
 1. Get good graphics. Going with png, not svg. (speed wins over scaling)
-1. rename repo to gavity dog.
-1. Keep score
 1. restart screen.
-1. intro animation.
 1. title screen
-1. Make a trailing broken tether.
+1. rename repo to gavity dog.
+2. stars image
+1. optimize score sprites.
+5. scale canvas with no antialiasing instead of resizing canvas.
 1. Scale to desktop, tablet size
+1. intro animation.
+1. Make a trailing broken tether.
 
 # Done
 4. click area bigger for mobile
@@ -24,6 +25,7 @@ elevader game
 1. canvas.addEventListener("touchstart", handleStart, false);
 1. Create Prop object for a sprite that does not move.
 6. Add the earth.
+1. Keep score
 
 # Ideas
 * Points are eggs, or waffles
