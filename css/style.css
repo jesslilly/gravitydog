@@ -1,10 +1,20 @@
-body {
-	font-family: verdana, arial, helvetica, sans-serif;
+.nomargin {
 	margin: 0px 0px 0px 0px;
 }
 
-#sprites {
+.invisible {
 	display: none;
+}
+
+/* http://stackoverflow.com/questions/7615009/disable-interpolation-when-scaling-a-canvas */
+.pixelated {
+    image-rendering: optimizeSpeed;             /* Older versions of FF */
+    image-rendering: -moz-crisp-edges;          /* FF 6.0+ */
+    image-rendering: -webkit-optimize-contrast; /* Webkit */
+                                                /*  (Safari now, Chrome soon) */
+    image-rendering: -o-crisp-edges;            /* OS X & Windows Opera (12.02+) */
+    image-rendering: optimize-contrast;         /* Possible future browsers. */
+    -ms-interpolation-mode: nearest-neighbor;   /* IE */
 }
 
 /* Vertical mobile */
@@ -36,7 +46,7 @@ body {
 /* Prevent text selection */
 /* http://stackoverflow.com/questions/880512/prevent-text-selection-after-double-click */
 /* http://stackoverflow.com/questions/7018324/how-do-i-stop-highlighting-of-a-div-element-when-double-clicking-on */
-body {
+.no-text-select {
 	-webkit-user-select: none; /* webkit (safari, chrome) browsers */
 	-moz-user-select: none; /* mozilla browsers */
 	-khtml-user-select: none; /* webkit (konqueror) browsers */

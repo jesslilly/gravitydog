@@ -40,7 +40,7 @@ SpaceDog.prototype.aboutFace = function() {
 	}
 	// For now for speed, I don't care about using the sprite's center point.
 	// Get a new angle 0-90.
-	var newAngle = Math.random() * 90;
+	var newAngle = Math.round(Math.random() * 90);
 	// Rotate that angle into the correct quadrant.
 	newAngle += (quadrant * 90);
 
