@@ -10,11 +10,11 @@ Gravity Dog game
 1. title screen
 1. change stars to radiate out from the center.  Increase all star speed with each click.
 1. Get good graphics. Going with png, not svg. (speed wins over scaling)
+2. Use require.js and/or grunt to modularize and minify.
 1. rename repo to gavity dog.
 2. stars image
 1. optimize score sprites.
 5. scale canvas with no antialiasing instead of resizing canvas.
-1. Scale to desktop, tablet size
 1. intro animation.
 1. Make a trailing broken tether.
 
@@ -28,6 +28,7 @@ Gravity Dog game
 6. Add the earth.
 1. Keep score
 1. Bigger score.
+1. Scale to desktop, tablet size
 
 # Ideas
 * Points are eggs, or waffles
