@@ -3,10 +3,6 @@ body {
 	margin: 0px 0px 0px 0px;
 }
 
-#canvas {
-	border: 1px solid gray;
-}
-
 #sprites {
 	display: none;
 }
@@ -14,26 +10,26 @@ body {
 /* Vertical mobile */
 @media screen and (min-width: 320px) and (orientation: portrait) {
 	#canvas {
-		border: 1px solid purple;
+		
 	}
 }
 
 @media screen and (min-width: 320px) and (orientation: landscape) {
 	#canvas {
-		border: 1px solid blue;
+		
 	}
 }
 /* Tablet */
 @media ( min-width : 480px) {
 	#canvas {
-		border: 1px solid green;
+		
 	}
 }
 
 /* Desktop */
 @media ( min-width : 640px) {
 	#canvas {
-		border: 1px solid red;
+		
 	}
 }
 
@@ -41,8 +37,8 @@ body {
 /* http://stackoverflow.com/questions/880512/prevent-text-selection-after-double-click */
 /* http://stackoverflow.com/questions/7018324/how-do-i-stop-highlighting-of-a-div-element-when-double-clicking-on */
 body {
-    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
-    -moz-user-select: none; /* mozilla browsers */
-    -khtml-user-select: none; /* webkit (konqueror) browsers */
-    -ms-user-select: none; /* IE10+ */
+	-webkit-user-select: none; /* webkit (safari, chrome) browsers */
+	-moz-user-select: none; /* mozilla browsers */
+	-khtml-user-select: none; /* webkit (konqueror) browsers */
+	-ms-user-select: none; /* IE10+ */
 }

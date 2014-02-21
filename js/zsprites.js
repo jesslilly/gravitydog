@@ -8,11 +8,6 @@ var SpaceDog = function(ix, iy, w, h) {
 };
 SpaceDog.prototype = new Clickable();
 
-// SpaceDog.prototype.update = function(layer, sprite) {
-// this.x += (Math.random() - .5) * 3;
-// this.y += (Math.random() - .5) * 3;
-// };
-
 SpaceDog.prototype.click = function() {
 	
 	vg.scorePlus(1);
