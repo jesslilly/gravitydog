@@ -60,6 +60,9 @@ var Animator = (function() {
 		}
 		return this;
 	};
+	
+	Animator.prototype.customAnimationHook = function() {
+	};
 
 	Animator.prototype.go = function() {
 		var id = setInterval(function() {
@@ -70,6 +73,8 @@ var Animator = (function() {
 						sprite.draw(ctx);
 					});
 				});
+				
+				self.customAnimationHook();
 			} catch (error) {
 				console.error(error.message);
 				clearInterval(id);

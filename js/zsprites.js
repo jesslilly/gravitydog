@@ -8,12 +8,22 @@ var SpaceDog = function(ix, iy, w, h) {
 };
 SpaceDog.prototype = new Clickable();
 
+SpaceDog.prototype.update = function() {
+
+	this.vOscillate(3);
+};
+
 SpaceDog.prototype.click = function() {
-	
+
 	vg.scorePlus(1);
 
 	// Turn around
 	this.aboutFace();
+	
+	// Remove vOscillate at a certain speed since you can't see it anyway.  Performance.
+	if (this.speed > 3) {
+		this.update = Sprite.prototype.update;
+	}
 
 	// Shrink
 	if (this.width > 50) {
@@ -44,6 +54,8 @@ SpaceDog.prototype.aboutFace = function() {
 	// Rotate that angle into the correct quadrant.
 	newAngle += (quadrant * 90);
 
-	this.setVector(newAngle, this.speed + .3);
+	this.speed = (this.speed === 0) ? 1 : this.speed + .3;
+
+	this.setVector(newAngle, this.speed);
 
 };

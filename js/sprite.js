@@ -35,6 +35,17 @@ var Sprite = (function() {
 		this.dir = dir;
 		this.speed = speed;
 	};
+	// Assign this method to a sprite update function to make it oscillate.
+	Sprite.prototype.vOscillate = function() {
+		if (!this.oscillateOffset) {
+			this.oscillateOffset = 0;
+		}
+		this.oscillateOffset += 4; // 4 degrees.
+
+		// Normal update.
+		this.x += this.vx;
+		this.y += this.vy + Math.sin(this.oscillateOffset * Math.PI / 180);
+	};
 
 	return Sprite;
 })();

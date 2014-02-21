@@ -4,8 +4,9 @@ console.log("elevader.js loaded");
 	var sprites = document.getElementById("sprites");
 
 	var canvas = document.getElementById('canvas');
-	
-	var scaleFactor = 1; // It's always a square, so it's the same for x and y.
+
+	var scaleFactor = 1; // It's always a square, so it's the same for x and
+							// y.
 
 	if (!canvas.getContext) {
 		alert("Shucks!  Try a different browser please?");
@@ -13,9 +14,9 @@ console.log("elevader.js loaded");
 
 	var ctx = canvas.getContext('2d');
 	/* http://stackoverflow.com/questions/7615009/disable-interpolation-when-scaling-a-canvas */
-    ctx.imageSmoothingEnabled = false;
-    ctx.webkitImageSmoothingEnabled = false;
-    ctx.mozImageSmoothingEnabled = false;
+	ctx.imageSmoothingEnabled = false;
+	ctx.webkitImageSmoothingEnabled = false;
+	ctx.mozImageSmoothingEnabled = false;
 
 	var a = null;
 
@@ -25,21 +26,23 @@ console.log("elevader.js loaded");
 		var vpw = verge.viewportW();
 		var vph = verge.viewportH();
 		var smaller = (vpw > vph) ? vph : vpw;
-		
-		// Don't change the canvas size programatically.  I want the canvas to 
-		// always be the same so point, 10,10 is always the same.  What changes is the 
+
+		// Don't change the canvas size programatically. I want the canvas to
+		// always be the same so point, 10,10 is always the same. What changes
+		// is the
 		// CSS w/h to scale the entire canvas to fit the actual screen size.
-		//canvas.width = smaller;
-		//canvas.height = smaller;
+		// canvas.width = smaller;
+		// canvas.height = smaller;
 
 		canvas.style.width = smaller + "px";
 		canvas.style.height = smaller + "px";
+		canvas.style.background = '#000000';
 		/* http://stackoverflow.com/questions/7791286/getting-correct-mouse-position-on-canvas-when-canvas-size-is-relative */
 		scaleFactor = canvas.width / smaller;
 
 		// Create an animator. Refresh at 17ms which is 60Hz.
 		a = new Animator(ctx, 17, scaleFactor);
-				
+
 		Sprite.bWidth = canvas.width;
 		Sprite.bHeight = canvas.height;
 		createSprites();
@@ -55,6 +58,12 @@ console.log("elevader.js loaded");
 		bg.update = function() {
 		};
 		a.add(0, bg);
+		// Go into buggy animation mode when you get a nice high score.
+		a.customAnimationHook = function() {
+			if (vg.getScore() > 30) {
+				bg.draw = function() {};
+			}
+		};
 
 		// Add star field!
 		for ( var idx = 0; idx < 10; idx++) {
@@ -72,7 +81,7 @@ console.log("elevader.js loaded");
 
 		// Add the dog!
 		var dog = new SpaceDog(100, 100, 118 * 1.5, 88 * 1.5);
-		dog.setVector(45, 1);
+		// dog.setVector(45, 1);
 		// TODO: Move images to the Sprite class.
 		dog.draw = function(ctx) {
 			ctx.drawImage(sprites, 0, 0, 118, 88, this.x, this.y, this.width, this.height);
