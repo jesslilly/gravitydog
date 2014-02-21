@@ -4,7 +4,6 @@ Gravity Dog
 Gravity Dog game
 
 # TODO
-1. Bigger score.
 2. Put GD and URL icons on the canvas
 6. create a button js object.
 1. restart screen.
@@ -28,6 +27,7 @@ Gravity Dog game
 1. Create Prop object for a sprite that does not move.
 6. Add the earth.
 1. Keep score
+1. Bigger score.
 
 # Ideas
 * Points are eggs, or waffles
