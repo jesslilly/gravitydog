@@ -14,6 +14,7 @@ Gravity Dog game
 1. rename repo to gavity dog.
 2. stars image
 1. optimize score sprites.
+2. Put in some kind of funny <HTML> tags and reverse video squares in bugz mode.
 5. scale canvas with no antialiasing instead of resizing canvas.
 1. intro animation.
 1. Make a trailing broken tether.
