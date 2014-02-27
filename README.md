@@ -7,7 +7,8 @@ Gravity Dog game
 2. Put GD and URL icons on the canvas
 6. create a button js object.
 1. restart screen.
-1. title screen
+1. title screen with Gravity dog jingle
+2. Set up Adsense and Analytics.
 1. change stars to radiate out from the center.  Increase all star speed with each click.
 1. Get good graphics. Going with png, not svg. (speed wins over scaling)
 2. Use require.js and/or grunt to modularize and minify.
