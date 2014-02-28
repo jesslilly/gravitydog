@@ -138,7 +138,6 @@ console.log("elevader.js loaded");
 
 	};
 	
-
 	var gameOver = function() {
 
 		// Popup
@@ -152,10 +151,7 @@ console.log("elevader.js loaded");
 			// the scaled size as per CSS.
 			ctx.font = "22pt Monospace";
 			ctx.fillStyle = "black";
-			var msg = "Get > 30!";
-			if (vg.getScore() > 29) {
-				ctx.fillText("Nice JOB!", this.x, this.y);
-			}
+			var msg = (vg.getScore() > 29) ? "Nice JOB!" : "Get > 30!";
 			ctx.fillText(msg, this.x, this.y);
 			ctx.fillStyle = "white";
 			ctx.fillText(msg, this.x + 2, this.y + 2);
