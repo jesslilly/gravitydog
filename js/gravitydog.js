@@ -6,7 +6,7 @@ console.log("elevader.js loaded");
 	var canvas = document.getElementById('canvas');
 
 	var scaleFactor = 1; // It's always a square, so it's the same for x and
-							// y.
+	// y.
 
 	if (!canvas.getContext) {
 		alert("Shucks!  Try a different browser please?");
@@ -45,8 +45,14 @@ console.log("elevader.js loaded");
 
 		Sprite.bWidth = canvas.width;
 		Sprite.bHeight = canvas.height;
+		newGame();
+	};
+	
+	var newGame = function() {
+		a.clear();
+		vg.setScore(0);
 		createSprites();
-		addScore();
+		addScore();		
 	};
 
 	var createSprites = function() {
@@ -61,7 +67,8 @@ console.log("elevader.js loaded");
 		// Go into buggy animation mode when you get a nice high score.
 		a.customAnimationHook = function() {
 			if (vg.getScore() > 29) {
-				bg.draw = function() {};
+				bg.draw = function() {
+				};
 			}
 		};
 
@@ -74,13 +81,15 @@ console.log("elevader.js loaded");
 
 		// Add the earth!
 		var earth = new Prop(Math.random() * canvas.width, Math.random() * canvas.height, 114, 114);
+		earth.x -= earth.width / 2;
+		earth.y -= earth.height / 2;
 		earth.draw = function(ctx) {
 			ctx.drawImage(sprites, 0, 93, 114, 114, this.x, this.y, this.width, this.height);
 		};
 		a.add(1, earth);
 
 		// Add the dog!
-		var dog = new SpaceDog(100, 100, 118 * 1.5, 88 * 1.5);
+		var dog = new SpaceDog(100, 100, 118 * 1.5, 88 * 1.5, gameOver);
 		// dog.setVector(45, 1);
 		// TODO: Move images to the Sprite class.
 		dog.draw = function(ctx) {
@@ -117,16 +126,51 @@ console.log("elevader.js loaded");
 		a.add(2, score);
 
 		// Screen size
-		var size = new Prop(300, 16, 0, 0);
+		var size = new Prop(200, 480 - 10, 0, 0);
 		size.draw = function(ctx) {
 			// Keep in mind this might be the canvas size and not
 			// the scaled size as per CSS.
-			ctx.font = "14pt Arial";
-			ctx.fillStyle = "white";
-			ctx.fillText(canvas.style.width + "x" + canvas.style.height, this.x, this.y);
+			ctx.font = "16pt Arial";
+			ctx.fillStyle = "rgba(225, 225, 225, 1)";
+			ctx.fillText("sparkyland.com/gravitydog", this.x, this.y);
 		};
-		a.add(2, size);
+		a.add(0, size);
 
+	};
+	
+
+	var gameOver = function() {
+
+		// Popup
+		var popup = new Prop(120, 120, 240, 240, "rgba(255, 255, 255, .8)");
+		a.add(2, popup);
+
+		// Words
+		var words = new Prop(140, 160, 0, 0);
+		words.draw = function(ctx) {
+			// Keep in mind this might be the canvas size and not
+			// the scaled size as per CSS.
+			ctx.font = "22pt Monospace";
+			ctx.fillStyle = "black";
+			var msg = "Get > 30!";
+			if (vg.getScore() > 29) {
+				ctx.fillText("Nice JOB!", this.x, this.y);
+			}
+			ctx.fillText(msg, this.x, this.y);
+			ctx.fillStyle = "white";
+			ctx.fillText(msg, this.x + 2, this.y + 2);
+		};
+		a.add(2, words);
+
+		// Restart Button
+		var restart = new Clickable(240, 240, 60, 60);
+		restart.draw = function(ctx) {
+			ctx.drawImage(sprites, 132, 40, 30, 30, this.x, this.y, this.width, this.height);
+		};
+		restart.click = function() {
+			newGame();
+		};
+		a.add(2, restart);
 	};
 
 	main();

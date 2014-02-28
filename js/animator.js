@@ -61,12 +61,13 @@ var Animator = (function() {
 		}
 		return this;
 	};
-	
-	Animator.prototype.add = function(layer, sprite) {
-		sprites[layer].push(sprite);
-		if (sprite instanceof Clickable) {
-			clickables.push(sprite);
-		}
+
+	Animator.prototype.clear = function() {
+		sprites.forEach(function(layer, idx) {
+			sprites[idx] = [];
+		});
+		clickables = [];
+		this.stop();
 		return this;
 	};
 

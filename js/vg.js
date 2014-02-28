@@ -1,10 +1,12 @@
 console.log("loaded vg.js");
 
+// TODO: rename this "game.js" and make it a singleton.  It will have a list of screens and levels.
 var vg = {};
 vg.hitTest = function(px, py, rx, ry, rw, rh) {
 	return (px >= rx && px <= rx + rw && py >= ry && py <= ry + rh);
 };
 
+// TODO: refactor this to sprite.js.  Makes sense to put the hit test functions there.
 vg.hitTestRect = function(sx, sy, sw, sh, rx, ry, rw, rh) {
 	return vg.hitTest(sx, sy, rx, ry, rw, rh)
 		|| vg.hitTest(sx + sw, sy, rx, ry, rw, rh)
@@ -22,4 +24,7 @@ vg.scorePlus = function(points) {
 };
 vg.getScore = function() {
 	return vg.score;
+};
+vg.setScore = function(s) {
+	vg.score = s;
 };

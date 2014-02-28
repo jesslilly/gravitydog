@@ -1,7 +1,8 @@
 console.log("zsprites.js loaded");
 
-var SpaceDog = function(ix, iy, w, h) {
+var SpaceDog = function(ix, iy, w, h, gameOverCB) {
 	Clickable.call(this, ix, iy, w, h, "rgba(255,255,255,.7)");
+	this.gameOverCB = gameOverCB;
 	if (vg.isMobile()) {
 		this.setPadding(10);
 	}
@@ -23,8 +24,8 @@ SpaceDog.prototype.update2 = function() {
 
 SpaceDog.prototype.check4GameOver = function() {
 	if (!vg.hitTestRect(this.x, this.y, this.width, this.height, 0, 0, Sprite.bWidth, Sprite.bHeight)) {
-		alert("Game Over!!!!");
 		this.update = function() {};
+		this.gameOverCB();
 	}
 };
 
