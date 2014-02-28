@@ -4,6 +4,7 @@ Gravity Dog
 Gravity Dog game
 
 # TODO
+1. Put a black rect behind the score so it does not get bugz mode.
 1. title screen with Gravity dog jingle
 2. Set up Adsense and Analytics.
 1. Implement dual graphics system.  (Sprites.png for space dog and robot dog)
