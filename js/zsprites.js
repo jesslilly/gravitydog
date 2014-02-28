@@ -8,10 +8,28 @@ var SpaceDog = function(ix, iy, w, h) {
 };
 SpaceDog.prototype = new Clickable();
 
-SpaceDog.prototype.update = function() {
+SpaceDog.prototype.update1 = function() {
 
 	this.vOscillate(3);
+	this.check4GameOver();
 };
+
+SpaceDog.prototype.update2 = function() {
+	
+	// Call super method.
+	Sprite.prototype.update.call(this);
+	this.check4GameOver();
+};
+
+SpaceDog.prototype.check4GameOver = function() {
+	if (!vg.hitTestRect(this.x, this.y, this.width, this.height, 0, 0, Sprite.bWidth, Sprite.bHeight)) {
+		alert("Game Over!!!!");
+		this.update = function() {};
+	}
+};
+
+// Initial "update" is just sitting there and oscillating.
+SpaceDog.prototype.update = SpaceDog.prototype.update1;
 
 SpaceDog.prototype.click = function() {
 
@@ -19,10 +37,11 @@ SpaceDog.prototype.click = function() {
 
 	// Turn around
 	this.aboutFace();
-	
-	// Remove vOscillate at a certain speed since you can't see it anyway.  Performance.
+
+	// Remove vOscillate at a certain speed since you can't see it anyway.
+	// Performance.
 	if (this.speed > 3) {
-		this.update = Sprite.prototype.update;
+		this.update = SpaceDog.prototype.update2;
 	}
 
 	// Shrink

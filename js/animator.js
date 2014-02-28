@@ -8,6 +8,7 @@ var Animator = (function() {
 	var clickables = [];
 	var self;
 	var scaleFactor = 1;
+	var intervalId = 0;
 
 	// I considered making this a singleton, but maybe not for now!
 	var Animator = function(context, i, scale) {
@@ -23,7 +24,7 @@ var Animator = (function() {
 		var click = function(e) {
 			var x = Math.round((e.pageX - xoffset) * scaleFactor);
 			var y = Math.round((e.pageY - yoffset) * scaleFactor);
-			console.log("Click at " + x + "," + y + " using scale "+ scaleFactor);
+			console.log("Click at " + x + "," + y + " using scale " + scaleFactor);
 			self.onClick(x, y);
 		};
 		if (canvas.addEventListener) {
@@ -61,11 +62,19 @@ var Animator = (function() {
 		return this;
 	};
 	
+	Animator.prototype.add = function(layer, sprite) {
+		sprites[layer].push(sprite);
+		if (sprite instanceof Clickable) {
+			clickables.push(sprite);
+		}
+		return this;
+	};
+
 	Animator.prototype.customAnimationHook = function() {
 	};
 
 	Animator.prototype.go = function() {
-		var id = setInterval(function() {
+		intervalId = setInterval(function() {
 			try {
 				sprites.forEach(function(layer) {
 					layer.forEach(function(sprite) {
@@ -73,13 +82,17 @@ var Animator = (function() {
 						sprite.draw(ctx);
 					});
 				});
-				
+
 				self.customAnimationHook();
 			} catch (error) {
 				console.error(error.message);
-				clearInterval(id);
+				clearInterval(intervalId);
 			}
 		}, interval);
+	};
+
+	Animator.prototype.stop = function() {
+		clearInterval(intervalId);
 	};
 
 	return Animator;

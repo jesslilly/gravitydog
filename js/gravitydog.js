@@ -60,7 +60,7 @@ console.log("elevader.js loaded");
 		a.add(0, bg);
 		// Go into buggy animation mode when you get a nice high score.
 		a.customAnimationHook = function() {
-			if (vg.getScore() > 30) {
+			if (vg.getScore() > 29) {
 				bg.draw = function() {};
 			}
 		};
