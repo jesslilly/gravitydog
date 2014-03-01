@@ -66,7 +66,7 @@ console.log("elevader.js loaded");
 		a.add(0, bg);
 		// Go into buggy animation mode when you get a nice high score.
 		a.customAnimationHook = function() {
-			if (vg.getScore() > 29) {
+			if (vg.getScore() > 2) {
 				bg.draw = function() {
 				};
 			}
@@ -124,17 +124,19 @@ console.log("elevader.js loaded");
 			});
 		};
 		a.add(2, score);
+		
+		// Score bg, so bugz mode does not affect score.
+		var bg = new Prop(4, 4, 180, 40, "black");
+		a.add(0, bg);
 
-		// Screen size
-		var size = new Prop(200, 480 - 10, 0, 0);
-		size.draw = function(ctx) {
-			// Keep in mind this might be the canvas size and not
-			// the scaled size as per CSS.
+		// URL
+		var url = new Prop(200, 480 - 10, 0, 0);
+		url.draw = function(ctx) {
 			ctx.font = "16pt Arial";
 			ctx.fillStyle = "rgba(225, 225, 225, 1)";
 			ctx.fillText("sparkyland.com/gravitydog", this.x, this.y);
 		};
-		a.add(0, size);
+		a.add(0, url);
 
 	};
 	
@@ -147,8 +149,6 @@ console.log("elevader.js loaded");
 		// Words
 		var words = new Prop(140, 160, 0, 0);
 		words.draw = function(ctx) {
-			// Keep in mind this might be the canvas size and not
-			// the scaled size as per CSS.
 			ctx.font = "22pt Monospace";
 			ctx.fillStyle = "black";
 			var msg = (vg.getScore() > 29) ? "Nice JOB!" : "Get > 30!";

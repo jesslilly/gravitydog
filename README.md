@@ -4,7 +4,6 @@ Gravity Dog
 Gravity Dog game
 
 # TODO
-1. Put a black rect behind the score so it does not get bugz mode.
 1. title screen with Gravity dog jingle
 2. Set up Adsense and Analytics.
 1. Implement dual graphics system.  (Sprites.png for space dog and robot dog)
@@ -20,6 +19,7 @@ Gravity Dog game
 1. Make a trailing broken tether.
 
 # Done
+1. Put a black rect behind the score so it does not get bugz mode.
 2. Put GD and URL icons on the canvas
 6. create a button js object.  Haha.  I already had one... Clickable.
 1. restart screen.
