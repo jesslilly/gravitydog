@@ -4,6 +4,7 @@ Gravity Dog
 Gravity Dog game
 
 # TODO
+1. Make replay button brigher than home button.
 2. Set up Adsense and Analytics.
 1. Better constructor for Prop/Sprite that takes an image name.
 1. Implement dual graphics system.  (Sprites.png for space dog and robot dog)
