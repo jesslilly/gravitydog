@@ -45,14 +45,59 @@ console.log("elevader.js loaded");
 
 		Sprite.bWidth = canvas.width;
 		Sprite.bHeight = canvas.height;
-		newGame();
+		introScreen();
 	};
-	
+
+	var introScreen = function() {
+		document.getElementById("whistle").play();
+		a.clear();
+
+		// Draw background.
+		var bg1 = new Clickable(0, 0, canvas.width / 2, canvas.height, "#999944");
+		bg1.update = function() {
+		};
+		bg1.click = function() {
+			newGame();
+		};
+		a.add(0, bg1);
+		var bg2 = new Clickable(canvas.width / 2, 0, canvas.width / 2, canvas.height, "#444499");
+		bg2.update = function() {
+		};
+		bg2.click = function() {
+			newGame();
+		};
+		a.add(0, bg2);
+
+		// Words
+		var words = new Prop(40, 40, 0, 0);
+		words.draw = function(ctx) {
+			var msg = "GRAVITY DOG!!";
+			ctx.font = "32pt Monospace";
+			ctx.fillStyle = "black";
+			ctx.fillText(msg, this.x, this.y);
+			ctx.fillStyle = "white";
+			ctx.fillText(msg, this.x + 2, this.y + 2);
+		};
+		a.add(2, words);
+
+		// play Button
+		var play = new Clickable(210, 240, 60, 60);
+		play.draw = function(ctx) {
+			ctx.drawImage(sprites, 132, 40, 30, 30, this.x, this.y, this.width, this.height);
+		};
+		play.click = function() {
+			newGame();
+		};
+		a.add(2, play);
+		a.go();
+	};
+
 	var newGame = function() {
 		a.clear();
 		vg.setScore(0);
 		createSprites();
-		addScore();		
+		addScore();
+		a.go();
 	};
 
 	var createSprites = function() {
@@ -66,7 +111,7 @@ console.log("elevader.js loaded");
 		a.add(0, bg);
 		// Go into buggy animation mode when you get a nice high score.
 		a.customAnimationHook = function() {
-			if (vg.getScore() > 2) {
+			if (vg.getScore() > 29) {
 				bg.draw = function() {
 				};
 			}
@@ -88,6 +133,15 @@ console.log("elevader.js loaded");
 		};
 		a.add(1, earth);
 
+		// URL
+		var url = new Prop(200, 480 - 10, 0, 0);
+		url.draw = function(ctx) {
+			ctx.font = "16pt Arial";
+			ctx.fillStyle = "rgba(225, 225, 225, 1)";
+			ctx.fillText("sparkyland.com/gravitydog", this.x, this.y);
+		};
+		a.add(1, url);
+
 		// Add the dog!
 		var dog = new SpaceDog(100, 100, 118 * 1.5, 88 * 1.5, gameOver);
 		// dog.setVector(45, 1);
@@ -96,8 +150,6 @@ console.log("elevader.js loaded");
 			ctx.drawImage(sprites, 0, 0, 118, 88, this.x, this.y, this.width, this.height);
 		};
 		a.add(1, dog);
-		a.go();
-
 	};
 
 	var addScore = function() {
@@ -124,22 +176,13 @@ console.log("elevader.js loaded");
 			});
 		};
 		a.add(2, score);
-		
+
 		// Score bg, so bugz mode does not affect score.
 		var bg = new Prop(4, 4, 180, 40, "black");
 		a.add(0, bg);
 
-		// URL
-		var url = new Prop(200, 480 - 10, 0, 0);
-		url.draw = function(ctx) {
-			ctx.font = "16pt Arial";
-			ctx.fillStyle = "rgba(225, 225, 225, 1)";
-			ctx.fillText("sparkyland.com/gravitydog", this.x, this.y);
-		};
-		a.add(0, url);
-
 	};
-	
+
 	var gameOver = function() {
 
 		// Popup
@@ -149,24 +192,34 @@ console.log("elevader.js loaded");
 		// Words
 		var words = new Prop(140, 160, 0, 0);
 		words.draw = function(ctx) {
+			var msg = (vg.getScore() > 29) ? "Nice JOB!" : "Get > 30!";
 			ctx.font = "22pt Monospace";
 			ctx.fillStyle = "black";
-			var msg = (vg.getScore() > 29) ? "Nice JOB!" : "Get > 30!";
 			ctx.fillText(msg, this.x, this.y);
 			ctx.fillStyle = "white";
 			ctx.fillText(msg, this.x + 2, this.y + 2);
 		};
 		a.add(2, words);
 
-		// Restart Button
-		var restart = new Clickable(240, 240, 60, 60);
-		restart.draw = function(ctx) {
+		// Home Button
+		var home = new Clickable(160, 280, 60, 60);
+		home.draw = function(ctx) {
+			ctx.drawImage(sprites, 132, 74, 30, 30, this.x, this.y, this.width, this.height);
+		};
+		home.click = function() {
+			introScreen();
+		};
+		a.add(2, home);
+
+		// Play Button
+		var play = new Clickable(260, 280, 60, 60);
+		play.draw = function(ctx) {
 			ctx.drawImage(sprites, 132, 40, 30, 30, this.x, this.y, this.width, this.height);
 		};
-		restart.click = function() {
+		play.click = function() {
 			newGame();
 		};
-		a.add(2, restart);
+		a.add(2, play);
 	};
 
 	main();

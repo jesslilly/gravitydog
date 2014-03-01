@@ -4,8 +4,8 @@ Gravity Dog
 Gravity Dog game
 
 # TODO
-1. title screen with Gravity dog jingle
 2. Set up Adsense and Analytics.
+1. Better constructor for Prop/Sprite that takes an image name.
 1. Implement dual graphics system.  (Sprites.png for space dog and robot dog)
 1. Implement mode 2: asteroids try to hit gravity dog.
 2. Use require.js and/or grunt to modularize and minify.
@@ -19,6 +19,7 @@ Gravity Dog game
 1. Make a trailing broken tether.
 
 # Done
+1. title screen with Gravity dog jingle
 1. Put a black rect behind the score so it does not get bugz mode.
 2. Put GD and URL icons on the canvas
 6. create a button js object.  Haha.  I already had one... Clickable.
