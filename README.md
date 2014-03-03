@@ -21,7 +21,6 @@ Gravity Dog game
 1. change stars to radiate out from the center.  Increase all star speed with each click.
 1. rename repo to gravitydog.
 2. stars image
-1. best score
 2. Put in some kind of funny <HTML> tags and reverse video squares in bugz mode.
 5. scale canvas with no antialiasing instead of resizing canvas.
 1. intro animation;  Space dog's spaceship blows up.
@@ -33,7 +32,7 @@ Gravity Dog game
 3. Intro screen:  Add 重力 犬
 1. optimize score sprites.
 2. Use one of these fonts: I love bitout, but silkscreen was so much easier to use.
-1. Make replay button brigher than home button.
+1. Make replay button brighter than home button.
 1. title screen with Gravity dog jingle
 1. Put a black rect behind the score so it does not get bugz mode.
 2. Put GD and URL icons on the canvas
@@ -50,6 +49,7 @@ Gravity Dog game
 1. Bigger score.
 1. Scale to desktop, tablet size
 1. Graphics: Going with png, not svg. (speed wins over scaling)
+1. best score - NOT IMPLEMENTED
 
 # Ideas
 * Points are eggs, or waffles
