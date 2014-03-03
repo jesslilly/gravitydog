@@ -4,10 +4,23 @@ Gravity Dog
 Gravity Dog game
 
 # TODO
+1. Prioritize this list better.
+1. Make replay button brigher than home button.
+2. Use one of these fonts: http://img.dafont.com/dl/?f=bit_out or http://www.fontspace.com/download/11591/83da0dc6fec6484caf480843ab8d758a/codeman38_press-start-2p.zip
 2. Set up Adsense and Analytics.
+3. Intro screen:  Add 重力 犬
+4. Hit test clickable rect instead of dog size.
+5. Preload audio (Does not work on first intro screen on iPhone)
+6. Auto tune gravity dog.
+7. Audio - respect sound MUTE
+8. Make shortcut/bookmark.
+9. Offline mode
+10. Use grunt
+3. Mouse pointer should be a hand and not arrow in desktop mode.
 1. Better constructor for Prop/Sprite that takes an image name.
 1. Implement dual graphics system.  (Sprites.png for space dog and robot dog)
 1. Implement mode 2: asteroids try to hit gravity dog.
+2. Progressively harder levels
 2. Use require.js and/or grunt to modularize and minify.
 1. change stars to radiate out from the center.  Increase all star speed with each click.
 1. rename repo to gravitydog.
