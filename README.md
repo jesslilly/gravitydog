@@ -5,7 +5,6 @@ Gravity Dog game
 
 # TODO
 1. Prioritize this list better.
-2. Use one of these fonts: http://img.dafont.com/dl/?f=bit_out or http://www.fontspace.com/download/11591/83da0dc6fec6484caf480843ab8d758a/codeman38_press-start-2p.zip
 2. Set up Adsense and Analytics.
 3. Intro screen:  Add 重力 犬
 4. Hit test clickable rect instead of dog size.
@@ -32,6 +31,7 @@ Gravity Dog game
 1. Make a trailing broken tether.
 
 # Done
+2. Use one of these fonts: I love bitout, but silkscreen was so much easier to use.
 1. Make replay button brigher than home button.
 1. title screen with Gravity dog jingle
 1. Put a black rect behind the score so it does not get bugz mode.

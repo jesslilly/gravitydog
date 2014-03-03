@@ -72,7 +72,7 @@ console.log("elevader.js loaded");
 		var words = new Prop(40, 40, 0, 0);
 		words.draw = function(ctx) {
 			var msg = "GRAVITY DOG!!";
-			ctx.font = "32pt Monospace";
+			ctx.font = "32pt silkscreennormal";
 			ctx.fillStyle = "black";
 			ctx.fillText(msg, this.x, this.y);
 			ctx.fillStyle = "white";
@@ -193,7 +193,7 @@ console.log("elevader.js loaded");
 		var words = new Prop(140, 160, 0, 0);
 		words.draw = function(ctx) {
 			var msg = (vg.getScore() > 29) ? "Nice JOB!" : "Get > 30!";
-			ctx.font = "22pt Monospace";
+			ctx.font = "22pt silkscreennormal";
 			ctx.fillStyle = "black";
 			ctx.fillText(msg, this.x, this.y);
 			ctx.fillStyle = "white";
