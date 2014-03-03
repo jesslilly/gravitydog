@@ -6,7 +6,6 @@ Gravity Dog game
 # TODO
 1. Prioritize this list better.
 2. Set up Adsense and Analytics.
-4. Hit test clickable rect instead of dog size.
 5. Preload audio (Does not work on first intro screen on iPhone)
 6. Auto tune gravity dog.
 7. Audio - respect sound MUTE
@@ -29,6 +28,8 @@ Gravity Dog game
 1. Make a trailing broken tether.
 
 # Done
+4. Hit test clickable rect instead of dog size.
+1. Mode depends on the day with Monday being easiest!
 3. Intro screen:  Add 重力 犬
 1. optimize score sprites.
 2. Use one of these fonts: I love bitout, but silkscreen was so much easier to use.

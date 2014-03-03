@@ -20,9 +20,18 @@ console.log("elevader.js loaded");
 
 	var a = null;
 
+	// Score needed to advance the mode.  There is only 1 mode right now.  lol.
+	// Monday = Easy, Sunday = Hard, just like NYT Crossword.  24,25,26,27,28,29,30
 	var mode = 0;
-	// Score needed to advance the mode.
-	var modeScores = [ 30, 60, 90, 120 ];
+	var modeScores = [];
+	var day = (new Date()).getDay();
+	// Move day to start from Monday = 0 to Sunday = 6.
+	day = (day === 0) ? 6 : day - 1;
+	// Reverse it now so Monday = 6 and Sunday = 0;
+	var handyCap = 6 - day;
+	for (var idx = 0; idx < 1; idx++ ) {
+		modeScores.push(30 - handyCap);
+	}
 
 	var main = function() {
 

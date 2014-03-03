@@ -23,7 +23,8 @@ SpaceDog.prototype.update2 = function() {
 };
 
 SpaceDog.prototype.check4GameOver = function() {
-	if (!vg.hitTestRect(this.x, this.y, this.width, this.height, 0, 0, Sprite.bWidth, Sprite.bHeight)) {
+	var clickRect = this.getClickRect();
+	if (!vg.hitTestRect(clickRect.x, clickRect.y, clickRect.width, clickRect.height, 0, 0, Sprite.bWidth, Sprite.bHeight)) {
 		this.update = function() {};
 		this.gameOverCB();
 	}
