@@ -6,7 +6,6 @@ Gravity Dog game
 # TODO
 1. Prioritize this list better.
 2. Set up Adsense and Analytics.
-3. Intro screen:  Add 重力 犬
 4. Hit test clickable rect instead of dog size.
 5. Preload audio (Does not work on first intro screen on iPhone)
 6. Auto tune gravity dog.
@@ -24,13 +23,14 @@ Gravity Dog game
 1. rename repo to gravitydog.
 2. stars image
 1. best score
-1. optimize score sprites.
 2. Put in some kind of funny <HTML> tags and reverse video squares in bugz mode.
 5. scale canvas with no antialiasing instead of resizing canvas.
 1. intro animation;  Space dog's spaceship blows up.
 1. Make a trailing broken tether.
 
 # Done
+3. Intro screen:  Add 重力 犬
+1. optimize score sprites.
 2. Use one of these fonts: I love bitout, but silkscreen was so much easier to use.
 1. Make replay button brigher than home button.
 1. title screen with Gravity dog jingle

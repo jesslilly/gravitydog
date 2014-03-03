@@ -20,6 +20,10 @@ console.log("elevader.js loaded");
 
 	var a = null;
 
+	var mode = 0;
+	// Score needed to advance the mode.
+	var modeScores = [ 30, 60, 90, 120 ];
+
 	var main = function() {
 
 		// Resize the canvas to a square that fits in the viewport.
@@ -79,6 +83,11 @@ console.log("elevader.js loaded");
 			ctx.fillText(msg, this.x + 2, this.y + 2);
 		};
 		a.add(2, words);
+		var japanese = new Prop(170, 50, 52 * 2, 17 * 2);
+		japanese.draw = function(ctx) {
+			ctx.drawImage(sprites, 119, 113, 52, 17, this.x, this.y, this.width, this.height);
+		};
+		a.add(2, japanese);
 
 		// play Button
 		var play = new Clickable(210, 240, 60, 60);
@@ -111,7 +120,7 @@ console.log("elevader.js loaded");
 		a.add(0, bg);
 		// Go into buggy animation mode when you get a nice high score.
 		a.customAnimationHook = function() {
-			if (vg.getScore() > 29) {
+			if (vg.getScore() >= modeScores[mode]) {
 				bg.draw = function() {
 				};
 			}
@@ -162,18 +171,11 @@ console.log("elevader.js loaded");
 		a.add(2, scoreIcon);
 
 		// Score board
-		var letterWidth = 30;
-		var score = new Prop(50, 10, letterWidth, letterWidth);
+		var score = new Prop(45, 38, 0, 0);
 		score.draw = function(ctx) {
-
-			var digits = (vg.getScore() + "").split("");
-			digits.forEach(function(digit, idx) {
-
-				var sourceHeight = (31 * digit) + 214;
-				var x = 50 + (idx * letterWidth);
-				ctx.drawImage(sprites, 1, sourceHeight, 30, 30, x, 10, letterWidth, letterWidth);
-
-			});
+			ctx.font = "32pt silkscreennormal";
+			ctx.fillStyle = "white";
+			ctx.fillText(vg.getScore() + "", this.x, this.y);
 		};
 		a.add(2, score);
 
@@ -190,16 +192,25 @@ console.log("elevader.js loaded");
 		a.add(2, popup);
 
 		// Words
-		var words = new Prop(140, 160, 0, 0);
+		var words = new Prop(130, 160, 0, 0);
 		words.draw = function(ctx) {
-			var msg = (vg.getScore() > 29) ? "Nice JOB!" : "Get > 30!";
-			ctx.font = "22pt silkscreennormal";
+			var msg = (vg.getScore() >= modeScores[mode]) ? "Nice JOB!" : "Get " + modeScores[mode] + "  !";
+			ctx.font = "32pt silkscreennormal";
 			ctx.fillStyle = "black";
 			ctx.fillText(msg, this.x, this.y);
 			ctx.fillStyle = "white";
 			ctx.fillText(msg, this.x + 2, this.y + 2);
 		};
 		a.add(2, words);
+
+		if (vg.getScore() < modeScores[mode]) {
+			// Score Icon
+			var scoreIcon = new Prop(297, 134, 29, 29);
+			scoreIcon.draw = function(ctx) {
+				ctx.drawImage(sprites, 133, 8, 29, 29, this.x, this.y, this.width, this.height);
+			};
+			a.add(2, scoreIcon);
+		}
 
 		// Home Button
 		var home = new Clickable(160, 280, 60, 60);
