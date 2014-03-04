@@ -6,6 +6,9 @@ Gravity Dog game
 # TODO
 1. Prioritize this list better.
 2. Set up Adsense and Analytics.
+3. bugz mode indicator.
+4. NICE JOB! is not aligned well on mobile.
+5. sharper scaling.
 5. Preload audio (Does not work on first intro screen on iPhone)
 6. Auto tune gravity dog.
 7. Audio - respect sound MUTE
