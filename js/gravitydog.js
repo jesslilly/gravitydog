@@ -4,6 +4,7 @@ console.log("elevader.js loaded");
 	var sprites = document.getElementById("sprites");
 
 	var canvas = document.getElementById('canvas');
+	//var ad = document.getElementsByClassName('gravity-dog-ad')[0];
 
 	var scaleFactor = 1; // It's always a square, so it's the same for x and
 	// y.
@@ -20,8 +21,9 @@ console.log("elevader.js loaded");
 
 	var a = null;
 
-	// Score needed to advance the mode.  There is only 1 mode right now.  lol.
-	// Monday = Easy, Sunday = Hard, just like NYT Crossword.  24,25,26,27,28,29,30
+	// Score needed to advance the mode. There is only 1 mode right now. lol.
+	// Monday = Easy, Sunday = Hard, just like NYT Crossword.
+	// 24,25,26,27,28,29,30
 	var mode = 0;
 	var modeScores = [];
 	var day = (new Date()).getDay();
@@ -29,7 +31,7 @@ console.log("elevader.js loaded");
 	day = (day === 0) ? 6 : day - 1;
 	// Reverse it now so Monday = 6 and Sunday = 0;
 	var handyCap = 6 - day;
-	for (var idx = 0; idx < 1; idx++ ) {
+	for ( var idx = 0; idx < 1; idx++) {
 		modeScores.push(30 - handyCap);
 	}
 
@@ -38,6 +40,7 @@ console.log("elevader.js loaded");
 		// Resize the canvas to a square that fits in the viewport.
 		var vpw = verge.viewportW();
 		var vph = verge.viewportH();
+		var orientation = (vpw > vph) ? "landscape" : "portrait";
 		var smaller = (vpw > vph) ? vph : vpw;
 
 		// Don't change the canvas size programatically. I want the canvas to
@@ -50,6 +53,17 @@ console.log("elevader.js loaded");
 		canvas.style.width = smaller + "px";
 		canvas.style.height = smaller + "px";
 		canvas.style.background = '#000000';
+		if (orientation === "landscape") {
+			document.getElementById('content').style.height = smaller + "px";
+			document.getElementById('content').style.width = (smaller * 1.5) + "px";
+//			ad.style.height = smaller + "px";
+//			ad.style.width = (smaller * .5) + "px";
+		} else {
+			document.getElementById('content').style.width = smaller + "px";
+			document.getElementById('content').style.height = (smaller * 1.5) + "px";
+//			ad.style.width = smaller + "px";
+//			ad.style.height = (smaller * .5) + "px";			
+		}
 		/* http://stackoverflow.com/questions/7791286/getting-correct-mouse-position-on-canvas-when-canvas-size-is-relative */
 		scaleFactor = canvas.width / smaller;
 
