@@ -22,7 +22,6 @@ Gravity Dog game
 2. Progressively harder levels
 2. Use require.js and/or grunt to modularize and minify.
 1. change stars to radiate out from the center.  Increase all star speed with each click.
-1. rename repo to gravitydog.
 2. stars image
 2. Put in some kind of funny <HTML> tags and reverse video squares in bugz mode.
 5. scale canvas with no antialiasing instead of resizing canvas.
@@ -30,6 +29,7 @@ Gravity Dog game
 1. Make a trailing broken tether.
 
 # Done
+1. rename repo to gravitydog.
 4. Hit test clickable rect instead of dog size.
 1. Mode depends on the day with Monday being easiest!
 3. Intro screen:  Add 重力 犬
