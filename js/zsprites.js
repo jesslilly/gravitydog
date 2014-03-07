@@ -12,20 +12,21 @@ SpaceDog.prototype = new Clickable();
 SpaceDog.prototype.update1 = function() {
 
 	this.vOscillate(3);
-	this.check4GameOver();
 };
 
 SpaceDog.prototype.update2 = function() {
-	
+
 	// Call super method.
 	Sprite.prototype.update.call(this);
-	this.check4GameOver();
+	//this.check4GameOver();
 };
 
-SpaceDog.prototype.check4GameOver = function() {
+SpaceDog.prototype.check500 = function() {
 	var clickRect = this.getClickRect();
-	if (!vg.hitTestRect(clickRect.x, clickRect.y, clickRect.width, clickRect.height, 0, 0, Sprite.bWidth, Sprite.bHeight)) {
-		this.update = function() {};
+	if (!vg.hitTestRect(clickRect.x, clickRect.y, clickRect.width,
+			clickRect.height, 0, 0, Sprite.bWidth, Sprite.bHeight)) {
+		this.check500 = function() {
+		};
 		this.gameOverCB();
 	}
 };
@@ -80,3 +81,29 @@ SpaceDog.prototype.aboutFace = function() {
 	this.setVector(newAngle, this.speed);
 
 };
+
+// ===========================================================================
+var Star = function(ix, iy, w, h) {
+	Sprite.call(this, ix, iy, w, h, "#FFFFFF");
+};
+Star.prototype = new Sprite();
+
+Star.prototype.update = function() {
+
+	// super.update();
+	Sprite.prototype.update.call(this);
+	
+	// Add code to twinkle?
+};
+Star.prototype.check500 = function() {
+
+	if (!vg.hitTest(this.x, this.y, 0, 0, Sprite.bWidth, Sprite.bHeight)) {
+		this.reform();
+	}
+};
+
+Star.prototype.reform = function() {
+	this.x = 0;
+	this.y = Math.random() * Sprite.bHeight;
+};
+

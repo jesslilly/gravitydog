@@ -29,6 +29,7 @@ Gravity Dog game
 1. Make a trailing broken tether.
 
 # Done
+1. stars warp.  Also implemented checker in animator and update500 and check500 for performance.
 4. NICE JOB! is not aligned well on mobile.
 1. rename repo to gravitydog.
 4. Hit test clickable rect instead of dog size.

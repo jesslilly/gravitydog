@@ -21,18 +21,19 @@ console.log("elevader.js loaded");
 
 	var a = null;
 
-	// Score needed to advance the mode. There is only 1 mode right now. lol.
+	// Score needed to advance the level. There is only 1 level right now. lol.
 	// Monday = Easy, Sunday = Hard, just like NYT Crossword.
 	// 24,25,26,27,28,29,30
-	var mode = 0;
-	var modeScores = [];
+	var level = 0;
+	var numLevels = 2;
+	var advanceAt = [];
 	var day = (new Date()).getDay();
 	// Move day to start from Monday = 0 to Sunday = 6.
 	day = (day === 0) ? 6 : day - 1;
 	// Reverse it now so Monday = 6 and Sunday = 0;
 	var handyCap = 6 - day;
-	for ( var idx = 0; idx < 1; idx++) {
-		modeScores.push(30 - handyCap);
+	for ( var idx = 0; idx < numLevels; idx++) {
+		advanceAt.push(30 - handyCap);
 	}
 
 	var main = function() {
@@ -127,12 +128,19 @@ console.log("elevader.js loaded");
 	var newGame = function() {
 		a.clear();
 		vg.setScore(0);
-		createSprites();
+		level1Sprites();
 		addScore();
 		a.go();
 	};
+	
+	var level2 = function() {
+		a.clear();
+		level2Sprites();
+		addScore();
+		a.go();		
+	};
 
-	var createSprites = function() {
+	var level1Sprites = function() {
 
 		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
@@ -141,13 +149,59 @@ console.log("elevader.js loaded");
 		bg.update = function() {
 		};
 		a.add(0, bg);
-		// Go into buggy animation mode when you get a nice high score.
+		// Go into buggy animation level when you get a nice high score.
+		// TODO: Improve efficiency by moving this check to SpaceDog.click.
 		a.customAnimationHook = function() {
-			if (vg.getScore() >= modeScores[mode]) {
+			if (vg.getScore() >= advanceAt[level]) {
 				bg.draw = function() {
 				};
 			}
 		};
+
+		// Add star field!
+		for ( var idx = 0; idx < 10; idx++) {
+			var star = new Star(Math.random() * canvas.width, Math.random() * canvas.height, 3, 3);
+			star.setVelocity(.1, 0);
+			a.add(0, star);
+		}
+
+		// Add the earth!
+		var earth = new Prop(Math.random() * canvas.width, Math.random() * canvas.height, 114, 114);
+		earth.x -= earth.width / 2;
+		earth.y -= earth.height / 2;
+		earth.draw = function(ctx) {
+			ctx.drawImage(sprites, 0, 93, 114, 114, this.x, this.y, this.width, this.height);
+		};
+		a.add(1, earth);
+
+		// URL
+		var url = new Prop(200, 480 - 10, 0, 0);
+		url.draw = function(ctx) {
+			ctx.font = "16pt Arial";
+			ctx.fillStyle = "rgba(225, 225, 225, 1)";
+			ctx.fillText("sparkyland.com/gravitydog", this.x, this.y);
+		};
+		a.add(1, url);
+
+		// Add the dog!
+		var dog = new SpaceDog(100, 100, 118 * 1.5, 88 * 1.5, gameOver);
+		// dog.setVector(45, 1);
+		// TODO: Move images to the Sprite class.
+		dog.draw = function(ctx) {
+			ctx.drawImage(sprites, 0, 0, 118, 88, this.x, this.y, this.width, this.height);
+		};
+		a.add(1, dog);
+	};
+	
+	var level2Sprites = function() {
+
+		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+		// Draw background.
+		var bg = new Sprite(0, 0, canvas.width, canvas.height, "#000000");
+		bg.update = function() {
+		};
+		a.add(0, bg);
 
 		// Add star field!
 		for ( var idx = 0; idx < 10; idx++) {
@@ -219,7 +273,7 @@ console.log("elevader.js loaded");
 		a.add(2, popup);
 		var words = new Prop(130, 160, 0, 0);
 		words.draw = function(ctx) {
-			var msg = (vg.getScore() >= modeScores[mode]) ? "Nice JOB!" : "Get " + modeScores[mode] + "  !";
+			var msg = (vg.getScore() >= advanceAt[level]) ? "Nice JOB!" : "Get " + advanceAt[level] + "  !";
 			ctx.font = "30pt silkscreennormal";
 			ctx.fillStyle = "black";
 			ctx.fillText(msg, this.x, this.y);
@@ -228,7 +282,7 @@ console.log("elevader.js loaded");
 		};
 		a.add(2, words);
 
-		if (vg.getScore() < modeScores[mode]) {
+		if (vg.getScore() < advanceAt[level]) {
 			// Score Icon
 			var scoreIcon = new Prop(290, 137, 29, 29);
 			scoreIcon.draw = function(ctx) {

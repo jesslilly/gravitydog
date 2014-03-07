@@ -9,6 +9,7 @@ var Animator = (function() {
 	var self;
 	var scaleFactor = 1;
 	var intervalId = 0;
+	var i500Counter = 0;
 
 	// I considered making this a singleton, but maybe not for now!
 	var Animator = function(context, i, scale) {
@@ -24,7 +25,8 @@ var Animator = (function() {
 		var click = function(e) {
 			var x = Math.round((e.pageX - xoffset) * scaleFactor);
 			var y = Math.round((e.pageY - yoffset) * scaleFactor);
-			console.log("Click at " + x + "," + y + " using scale " + scaleFactor);
+			console.log("Click at " + x + "," + y + " using scale "
+					+ scaleFactor);
 			self.onClick(x, y);
 		};
 		if (canvas.addEventListener) {
@@ -67,6 +69,7 @@ var Animator = (function() {
 			sprites[idx] = [];
 		});
 		clickables = [];
+		Animator.iterator = 0;
 		this.stop();
 		return this;
 	};
@@ -80,11 +83,21 @@ var Animator = (function() {
 				sprites.forEach(function(layer) {
 					layer.forEach(function(sprite) {
 						sprite.update && sprite.update();
+						sprite.check && sprite.check();
+
+						// For performance, things that don't need to update
+						// or check very often can do it on the 500ms mark.
+						if (i500Counter > 500) {
+							sprite.update500 && sprite.update500();
+							sprite.check500 && sprite.check500();
+						}
 						sprite.draw(ctx);
 					});
 				});
 
 				self.customAnimationHook();
+				Animator.iterator++;
+				i500Counter = (i500Counter > 500) ? 0 : i500Counter + interval;
 			} catch (error) {
 				console.error(error.message);
 				clearInterval(intervalId);
@@ -94,6 +107,11 @@ var Animator = (function() {
 
 	Animator.prototype.stop = function() {
 		clearInterval(intervalId);
+	};
+
+	Animator.iterator = 0;
+	Animator.prototype.getIteration = function() {
+		return Animator.iterator;
 	};
 
 	return Animator;
