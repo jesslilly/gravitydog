@@ -211,7 +211,7 @@ console.log("elevader.js loaded");
 	var gameOver = function() {
 
 		// Popup
-		var popup = new Prop(120, 120, 240, 240, "rgba(255, 255, 255, .8)");
+		var popup = new Prop(120, 120, 240, 160, "rgba(255, 255, 255, .8)");
 		a.add(2, popup);
 
 		// Words
@@ -230,7 +230,7 @@ console.log("elevader.js loaded");
 
 		if (vg.getScore() < modeScores[mode]) {
 			// Score Icon
-			var scoreIcon = new Prop(297, 134, 29, 29);
+			var scoreIcon = new Prop(290, 137, 29, 29);
 			scoreIcon.draw = function(ctx) {
 				ctx.drawImage(sprites, 133, 8, 29, 29, this.x, this.y, this.width, this.height);
 			};
@@ -238,7 +238,7 @@ console.log("elevader.js loaded");
 		}
 
 		// Home Button
-		var home = new Clickable(160, 280, 60, 60);
+		var home = new Clickable(160, 200, 60, 60);
 		home.draw = function(ctx) {
 			ctx.drawImage(sprites, 132, 74, 30, 30, this.x, this.y, this.width, this.height);
 		};
@@ -248,7 +248,7 @@ console.log("elevader.js loaded");
 		a.add(2, home);
 
 		// Play Button
-		var play = new Clickable(260, 280, 60, 60);
+		var play = new Clickable(260, 200, 60, 60);
 		play.draw = function(ctx) {
 			ctx.drawImage(sprites, 132, 40, 30, 30, this.x, this.y, this.width, this.height);
 		};

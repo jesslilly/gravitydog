@@ -5,22 +5,23 @@ Gravity Dog game
 
 # TODO
 1. Prioritize this list better.
-3. bugz mode indicator.
+1. Implement mode 2: asteroids try to hit gravity dog.
+1. change stars to radiate out from the center.  Increase all star speed with each click.
+2. Progressively harder levels
+1. Implement dual graphics system.  (Sprites.png for space dog and robot dog)
+8. Make shortcut/bookmark.
+9. Offline mode
 2. Set up Adsense and Analytics.
+10. Use grunt
+2. Use require.js and/or grunt to modularize and minify.
+1. framework improvement: Better constructor for Prop/Sprite that takes an image name.
+1. framework improvement: Add a sprite to a sprite instead of just to the animator.
+3. bugz mode indicator.
 5. sharper scaling.
 5. Preload audio (Does not work on first intro screen on iPhone)
 6. Auto tune gravity dog.
 7. Audio - respect sound MUTE
-8. Make shortcut/bookmark.
-9. Offline mode
-10. Use grunt
 3. Mouse pointer should be a hand and not arrow in desktop mode.
-1. Better constructor for Prop/Sprite that takes an image name.
-1. Implement dual graphics system.  (Sprites.png for space dog and robot dog)
-1. Implement mode 2: asteroids try to hit gravity dog.
-2. Progressively harder levels
-2. Use require.js and/or grunt to modularize and minify.
-1. change stars to radiate out from the center.  Increase all star speed with each click.
 2. stars image
 2. Put in some kind of funny <HTML> tags and reverse video squares in bugz mode.
 5. scale canvas with no antialiasing instead of resizing canvas.
