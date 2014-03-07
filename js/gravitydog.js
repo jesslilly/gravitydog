@@ -33,7 +33,7 @@ console.log("gravitydog.js loaded");
 	// Reverse it now so Monday = 6 and Sunday = 0;
 	var handyCap = 6 - day;
 	for ( var idx = 0; idx < numLevels; idx++) {
-		advanceAt.push(10 - handyCap);
+		advanceAt.push(30 - handyCap);
 	}
 
 	var main = function() {
