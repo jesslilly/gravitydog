@@ -5,9 +5,8 @@ Gravity Dog game
 
 # TODO
 1. Prioritize this list better.
-2. Set up Adsense and Analytics.
 3. bugz mode indicator.
-4. NICE JOB! is not aligned well on mobile.
+2. Set up Adsense and Analytics.
 5. sharper scaling.
 5. Preload audio (Does not work on first intro screen on iPhone)
 6. Auto tune gravity dog.
@@ -29,6 +28,7 @@ Gravity Dog game
 1. Make a trailing broken tether.
 
 # Done
+4. NICE JOB! is not aligned well on mobile.
 1. rename repo to gravitydog.
 4. Hit test clickable rect instead of dog size.
 1. Mode depends on the day with Monday being easiest!

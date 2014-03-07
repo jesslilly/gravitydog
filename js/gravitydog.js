@@ -215,10 +215,12 @@ console.log("elevader.js loaded");
 		a.add(2, popup);
 
 		// Words
+		var popup = new Prop(125, 125, 230, 50, "#33DD44");
+		a.add(2, popup);
 		var words = new Prop(130, 160, 0, 0);
 		words.draw = function(ctx) {
 			var msg = (vg.getScore() >= modeScores[mode]) ? "Nice JOB!" : "Get " + modeScores[mode] + "  !";
-			ctx.font = "32pt silkscreennormal";
+			ctx.font = "30pt silkscreennormal";
 			ctx.fillStyle = "black";
 			ctx.fillText(msg, this.x, this.y);
 			ctx.fillStyle = "white";
