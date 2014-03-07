@@ -1,4 +1,4 @@
-console.log("elevader.js loaded");
+console.log("gravitydog.js loaded");
 
 (function() {
 	var sprites = document.getElementById("sprites");
@@ -33,7 +33,7 @@ console.log("elevader.js loaded");
 	// Reverse it now so Monday = 6 and Sunday = 0;
 	var handyCap = 6 - day;
 	for ( var idx = 0; idx < numLevels; idx++) {
-		advanceAt.push(30 - handyCap);
+		advanceAt.push(10 - handyCap);
 	}
 
 	var main = function() {
@@ -153,8 +153,10 @@ console.log("elevader.js loaded");
 		// TODO: Improve efficiency by moving this check to SpaceDog.click.
 		a.customAnimationHook = function() {
 			if (vg.getScore() >= advanceAt[level]) {
-				bg.draw = function() {
-				};
+				level2();
+				a.customAnimationHook = function() {};
+//				bg.draw = function() {
+//				};
 			}
 		};
 
@@ -173,15 +175,6 @@ console.log("elevader.js loaded");
 			ctx.drawImage(sprites, 0, 93, 114, 114, this.x, this.y, this.width, this.height);
 		};
 		a.add(1, earth);
-
-		// URL
-		var url = new Prop(200, 480 - 10, 0, 0);
-		url.draw = function(ctx) {
-			ctx.font = "16pt Arial";
-			ctx.fillStyle = "rgba(225, 225, 225, 1)";
-			ctx.fillText("sparkyland.com/gravitydog", this.x, this.y);
-		};
-		a.add(1, url);
 
 		// Add the dog!
 		var dog = new SpaceDog(100, 100, 118 * 1.5, 88 * 1.5, gameOver);
@@ -204,32 +197,16 @@ console.log("elevader.js loaded");
 		a.add(0, bg);
 
 		// Add star field!
-		for ( var idx = 0; idx < 10; idx++) {
-			var star = new Sprite(Math.random() * canvas.width, Math.random() * canvas.height, 3, 3, "#FFFFFF");
-			star.setVelocity(.1, 0);
+		for ( var idx = 0; idx < 15; idx++) {
+			var star = new Star(canvas.width/2, 10, 1, 1, "#FFFFFF");
+			star.setVector(Math.random() * 180, (Math.random() * 1.5) + 1);
+			star.reappear = star.center;
+			star.update500 = star.increase;
 			a.add(0, star);
 		}
 
-		// Add the earth!
-		var earth = new Prop(Math.random() * canvas.width, Math.random() * canvas.height, 114, 114);
-		earth.x -= earth.width / 2;
-		earth.y -= earth.height / 2;
-		earth.draw = function(ctx) {
-			ctx.drawImage(sprites, 0, 93, 114, 114, this.x, this.y, this.width, this.height);
-		};
-		a.add(1, earth);
-
-		// URL
-		var url = new Prop(200, 480 - 10, 0, 0);
-		url.draw = function(ctx) {
-			ctx.font = "16pt Arial";
-			ctx.fillStyle = "rgba(225, 225, 225, 1)";
-			ctx.fillText("sparkyland.com/gravitydog", this.x, this.y);
-		};
-		a.add(1, url);
-
 		// Add the dog!
-		var dog = new SpaceDog(100, 100, 118 * 1.5, 88 * 1.5, gameOver);
+		var dog = new SpaceDog(120, 340, 118 * 2, 88 * 2, gameOver);
 		// dog.setVector(45, 1);
 		// TODO: Move images to the Sprite class.
 		dog.draw = function(ctx) {
@@ -259,6 +236,15 @@ console.log("elevader.js loaded");
 		// Score bg, so bugz mode does not affect score.
 		var bg = new Prop(4, 4, 180, 40, "black");
 		a.add(0, bg);
+
+		// URL
+		var url = new Prop(200, 480 - 10, 0, 0);
+		url.draw = function(ctx) {
+			ctx.font = "16pt Arial";
+			ctx.fillStyle = "rgba(225, 225, 225, 1)";
+			ctx.fillText("sparkyland.com/gravitydog", this.x, this.y);
+		};
+		a.add(1, url);
 
 	};
 

@@ -53,8 +53,8 @@ var Sprite = (function() {
 Sprite.vectorToVelocity = function(degrees, speed) {
 	var pair = {};
 	var radians = degrees * Math.PI / 180;
-	pair.vy = Math.round(speed * Math.sin(radians));
-	pair.vx = Math.round(speed * Math.cos(radians));
+	pair.vy = speed * Math.sin(radians);
+	pair.vx = speed * Math.cos(radians);
 	console.log(degrees + " degrees @ " + speed + "=(" + pair.vx + "," + pair.vy + ")");
 	return pair;
 };

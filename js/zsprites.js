@@ -18,7 +18,7 @@ SpaceDog.prototype.update2 = function() {
 
 	// Call super method.
 	Sprite.prototype.update.call(this);
-	//this.check4GameOver();
+	// this.check4GameOver();
 };
 
 SpaceDog.prototype.check500 = function() {
@@ -92,18 +92,29 @@ Star.prototype.update = function() {
 
 	// super.update();
 	Sprite.prototype.update.call(this);
-	
+
 	// Add code to twinkle?
 };
 Star.prototype.check500 = function() {
 
 	if (!vg.hitTest(this.x, this.y, 0, 0, Sprite.bWidth, Sprite.bHeight)) {
-		this.reform();
+		this.reappear();
 	}
 };
 
-Star.prototype.reform = function() {
+Star.prototype.warp = function() {
 	this.x = 0;
 	this.y = Math.random() * Sprite.bHeight;
 };
-
+Star.prototype.center = function() {
+	this.width = 1;
+	this.height = 1;
+	this.x = Sprite.bHeight / 2;
+	this.y = 10;
+};
+Star.prototype.increase = function() {
+	this.width += .25;
+	this.height += .25;
+};
+// Default reappear behavior is to warp.
+Star.prototype.reappear = Star.prototype.warp;
