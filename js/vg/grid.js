@@ -1,6 +1,7 @@
 console.log("grid.js loaded");
 
-var Grid = (function() {
+define([], function() {
+
 	var width = 0;
 	var height = 0;
 	var unit = 0;
@@ -42,4 +43,5 @@ var Grid = (function() {
 		}
 	};
 	return Grid;
-})();
+
+});

@@ -1,6 +1,6 @@
 console.log("sprite.js loaded");
 
-var Sprite = (function() {
+define([ "vg/prop" ], function(Prop) {
 
 	var Sprite = function(ix, iy, w, h, color) {
 		Prop.call(this, ix, iy, w, h, color);
@@ -21,7 +21,8 @@ var Sprite = (function() {
 
 	Sprite.prototype.draw = function(ctx) {
 		ctx.fillStyle = this.color;
-		ctx.fillRect(Math.round(this.x), Math.round(this.y), this.width, this.height);
+		ctx.fillRect(Math.round(this.x), Math.round(this.y), this.width,
+				this.height);
 	};
 	Sprite.prototype.setVelocity = function(vx, vy) {
 		this.vx = vx;
@@ -47,18 +48,21 @@ var Sprite = (function() {
 		this.y += this.vy + Math.sin(this.oscillateOffset * Math.PI / 180);
 	};
 
+
+	Sprite.vectorToVelocity = function(degrees, speed) {
+		var pair = {};
+		var radians = degrees * Math.PI / 180;
+		pair.vy = speed * Math.sin(radians);
+		pair.vx = speed * Math.cos(radians);
+		console.log(degrees + " degrees @ " + speed + "=(" + pair.vx + ","
+				+ pair.vy + ")");
+		return pair;
+	};
+
+	// b for boundary.
+	Sprite.bWidth = 100;
+	Sprite.bHeight = 100;
+	
+
 	return Sprite;
-})();
-
-Sprite.vectorToVelocity = function(degrees, speed) {
-	var pair = {};
-	var radians = degrees * Math.PI / 180;
-	pair.vy = speed * Math.sin(radians);
-	pair.vx = speed * Math.cos(radians);
-	console.log(degrees + " degrees @ " + speed + "=(" + pair.vx + "," + pair.vy + ")");
-	return pair;
-};
-
-// b for boundary.
-Sprite.bWidth = 100;
-Sprite.bHeight = 100;
+});

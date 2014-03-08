@@ -1,10 +1,12 @@
-console.log("gravitydog.js loaded");
+console.log("main.js loaded");
 
-(function() {
+require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite",
+		"spacedog", "star" ], function(vg, Animator, Clickable, Prop, Sprite, SpaceDog, Star) {
+
 	var sprites = document.getElementById("sprites");
 
 	var canvas = document.getElementById('canvas');
-	//var ad = document.getElementsByClassName('gravity-dog-ad')[0];
+	// var ad = document.getElementsByClassName('gravity-dog-ad')[0];
 
 	var scaleFactor = 1; // It's always a square, so it's the same for x and
 	// y.
@@ -56,14 +58,16 @@ console.log("gravitydog.js loaded");
 		canvas.style.background = '#000000';
 		if (orientation === "landscape") {
 			document.getElementById('content').style.height = smaller + "px";
-			document.getElementById('content').style.width = (smaller * 1.5) + "px";
-//			ad.style.height = smaller + "px";
-//			ad.style.width = (smaller * .5) + "px";
+			document.getElementById('content').style.width = (smaller * 1.5)
+					+ "px";
+			// ad.style.height = smaller + "px";
+			// ad.style.width = (smaller * .5) + "px";
 		} else {
 			document.getElementById('content').style.width = smaller + "px";
-			document.getElementById('content').style.height = (smaller * 1.5) + "px";
-//			ad.style.width = smaller + "px";
-//			ad.style.height = (smaller * .5) + "px";			
+			document.getElementById('content').style.height = (smaller * 1.5)
+					+ "px";
+			// ad.style.width = smaller + "px";
+			// ad.style.height = (smaller * .5) + "px";
 		}
 		/* http://stackoverflow.com/questions/7791286/getting-correct-mouse-position-on-canvas-when-canvas-size-is-relative */
 		scaleFactor = canvas.width / smaller;
@@ -81,14 +85,16 @@ console.log("gravitydog.js loaded");
 		a.clear();
 
 		// Draw background.
-		var bg1 = new Clickable(0, 0, canvas.width / 2, canvas.height, "#999944");
+		var bg1 = new Clickable(0, 0, canvas.width / 2, canvas.height,
+				"#999944");
 		bg1.update = function() {
 		};
 		bg1.click = function() {
 			newGame();
 		};
 		a.add(0, bg1);
-		var bg2 = new Clickable(canvas.width / 2, 0, canvas.width / 2, canvas.height, "#444499");
+		var bg2 = new Clickable(canvas.width / 2, 0, canvas.width / 2,
+				canvas.height, "#444499");
 		bg2.update = function() {
 		};
 		bg2.click = function() {
@@ -109,14 +115,16 @@ console.log("gravitydog.js loaded");
 		a.add(2, words);
 		var japanese = new Prop(170, 50, 52 * 2, 17 * 2);
 		japanese.draw = function(ctx) {
-			ctx.drawImage(sprites, 119, 113, 52, 17, this.x, this.y, this.width, this.height);
+			ctx.drawImage(sprites, 119, 113, 52, 17, this.x, this.y,
+					this.width, this.height);
 		};
 		a.add(2, japanese);
 
 		// play Button
 		var play = new Clickable(210, 240, 60, 60);
 		play.draw = function(ctx) {
-			ctx.drawImage(sprites, 132, 40, 30, 30, this.x, this.y, this.width, this.height);
+			ctx.drawImage(sprites, 132, 40, 30, 30, this.x, this.y, this.width,
+					this.height);
 		};
 		play.click = function() {
 			newGame();
@@ -132,12 +140,12 @@ console.log("gravitydog.js loaded");
 		addScore();
 		a.go();
 	};
-	
+
 	var level2 = function() {
 		a.clear();
 		level2Sprites();
 		addScore();
-		a.go();		
+		a.go();
 	};
 
 	var level1Sprites = function() {
@@ -154,38 +162,44 @@ console.log("gravitydog.js loaded");
 		a.customAnimationHook = function() {
 			if (vg.getScore() >= advanceAt[level]) {
 				level2();
-				a.customAnimationHook = function() {};
-//				bg.draw = function() {
-//				};
+				a.customAnimationHook = function() {
+				};
+				// bg.draw = function() {
+				// };
 			}
 		};
 
 		// Add star field!
 		for ( var idx = 0; idx < 10; idx++) {
-			var star = new Star(Math.random() * canvas.width, Math.random() * canvas.height, 3, 3);
-			star.setVelocity(.1, 0);
+			var star = new Star(Math.random() * canvas.width, Math.random()
+					* canvas.height, 3, 3);
+			star.setVelocity((Math.random() * 1.5) + 1 , 0);
 			a.add(0, star);
 		}
 
 		// Add the earth!
-		var earth = new Prop(Math.random() * canvas.width, Math.random() * canvas.height, 114, 114);
+		var earth = new Star(Math.random() * canvas.width, Math.random()
+				* canvas.height, 114, 114);
 		earth.x -= earth.width / 2;
 		earth.y -= earth.height / 2;
+		earth.setVelocity(.5 , 0);
 		earth.draw = function(ctx) {
-			ctx.drawImage(sprites, 0, 93, 114, 114, this.x, this.y, this.width, this.height);
+			ctx.drawImage(sprites, 0, 93, 114, 114, this.x, this.y, this.width,
+					this.height);
 		};
 		a.add(1, earth);
 
 		// Add the dog!
-		var dog = new SpaceDog(100, 100, 118 * 1.5, 88 * 1.5, gameOver);
+		var dog = new SpaceDog(200, 200, 118 * 1.5, 88 * 1.5, gameOver);
 		// dog.setVector(45, 1);
 		// TODO: Move images to the Sprite class.
 		dog.draw = function(ctx) {
-			ctx.drawImage(sprites, 0, 0, 118, 88, this.x, this.y, this.width, this.height);
+			ctx.drawImage(sprites, 0, 0, 118, 88, this.x, this.y, this.width,
+					this.height);
 		};
 		a.add(1, dog);
 	};
-	
+
 	var level2Sprites = function() {
 
 		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -198,7 +212,7 @@ console.log("gravitydog.js loaded");
 
 		// Add star field!
 		for ( var idx = 0; idx < 15; idx++) {
-			var star = new Star(canvas.width/2, 10, 1, 1, "#FFFFFF");
+			var star = new Star(canvas.width / 2, 10, 1, 1, "#FFFFFF");
 			star.setVector(Math.random() * 180, (Math.random() * 1.5) + 1);
 			star.reappear = star.center;
 			star.update500 = star.increase;
@@ -210,7 +224,8 @@ console.log("gravitydog.js loaded");
 		// dog.setVector(45, 1);
 		// TODO: Move images to the Sprite class.
 		dog.draw = function(ctx) {
-			ctx.drawImage(sprites, 0, 0, 118, 88, this.x, this.y, this.width, this.height);
+			ctx.drawImage(sprites, 0, 0, 118, 88, this.x, this.y, this.width,
+					this.height);
 		};
 		a.add(1, dog);
 	};
@@ -220,7 +235,8 @@ console.log("gravitydog.js loaded");
 		// Score Icon
 		var scoreIcon = new Prop(10, 10, 29, 29);
 		scoreIcon.draw = function(ctx) {
-			ctx.drawImage(sprites, 133, 8, 29, 29, this.x, this.y, this.width, this.height);
+			ctx.drawImage(sprites, 133, 8, 29, 29, this.x, this.y, this.width,
+					this.height);
 		};
 		a.add(2, scoreIcon);
 
@@ -259,7 +275,8 @@ console.log("gravitydog.js loaded");
 		a.add(2, popup);
 		var words = new Prop(130, 160, 0, 0);
 		words.draw = function(ctx) {
-			var msg = (vg.getScore() >= advanceAt[level]) ? "Nice JOB!" : "Get " + advanceAt[level] + "  !";
+			var msg = (vg.getScore() >= advanceAt[level]) ? "Nice JOB!"
+					: "Get " + advanceAt[level] + "  !";
 			ctx.font = "30pt silkscreennormal";
 			ctx.fillStyle = "black";
 			ctx.fillText(msg, this.x, this.y);
@@ -272,7 +289,8 @@ console.log("gravitydog.js loaded");
 			// Score Icon
 			var scoreIcon = new Prop(290, 137, 29, 29);
 			scoreIcon.draw = function(ctx) {
-				ctx.drawImage(sprites, 133, 8, 29, 29, this.x, this.y, this.width, this.height);
+				ctx.drawImage(sprites, 133, 8, 29, 29, this.x, this.y,
+						this.width, this.height);
 			};
 			a.add(2, scoreIcon);
 		}
@@ -280,7 +298,8 @@ console.log("gravitydog.js loaded");
 		// Home Button
 		var home = new Clickable(160, 200, 60, 60);
 		home.draw = function(ctx) {
-			ctx.drawImage(sprites, 132, 74, 30, 30, this.x, this.y, this.width, this.height);
+			ctx.drawImage(sprites, 132, 74, 30, 30, this.x, this.y, this.width,
+					this.height);
 		};
 		home.click = function() {
 			introScreen();
@@ -290,7 +309,8 @@ console.log("gravitydog.js loaded");
 		// Play Button
 		var play = new Clickable(260, 200, 60, 60);
 		play.draw = function(ctx) {
-			ctx.drawImage(sprites, 132, 40, 30, 30, this.x, this.y, this.width, this.height);
+			ctx.drawImage(sprites, 132, 40, 30, 30, this.x, this.y, this.width,
+					this.height);
 		};
 		play.click = function() {
 			newGame();
@@ -300,4 +320,4 @@ console.log("gravitydog.js loaded");
 
 	main();
 
-})();
+});

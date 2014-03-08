@@ -1,13 +1,13 @@
 console.log("prop.js loaded");
 
-var Prop = (function() {
+define([], function() {
 
 	var Prop = function(ix, iy, w, h, color) {
 		this.x = ix;
 		this.y = iy;
 		this.width = w;
 		this.height = h;
-		
+
 		// rgba(255, 255, 0, .5) or "#00A308"
 		this.color = color;
 	};
@@ -18,4 +18,5 @@ var Prop = (function() {
 				this.height);
 	};
 	return Prop;
-})();
+
+});

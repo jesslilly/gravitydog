@@ -1,6 +1,7 @@
 console.log("animator.js loaded");
 
-var Animator = (function() {
+define([ "vg/prop", "vg/clickable", "vg/sprite" ], function(Prop, Clickable, Sprite) {
+
 	var interval = 10;
 	var ctx = null;
 	// Just have 3 layers right now. Back, mid and foreground.
@@ -115,4 +116,5 @@ var Animator = (function() {
 	};
 
 	return Animator;
-})();
+
+});

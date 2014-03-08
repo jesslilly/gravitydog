@@ -12,8 +12,7 @@ Gravity Dog game
 8. Make shortcut/bookmark.
 9. Offline mode
 2. Set up Adsense and Analytics.
-10. Use grunt
-2. Use require.js and/or grunt to modularize and minify.
+10. Use grunt to minify
 1. framework improvement: Better constructor for Prop/Sprite that takes an image name.
 1. framework improvement: Add a sprite to a sprite instead of just to the animator.
 3. bugz mode indicator.
@@ -29,6 +28,7 @@ Gravity Dog game
 1. Make a trailing broken tether.
 
 # Done
+2. Use require.js to modularize.  Fixes script async loading bug on iPhone.
 1. stars warp.  Also implemented checker in animator and update500 and check500 for performance.
 4. NICE JOB! is not aligned well on mobile.
 1. rename repo to gravitydog.

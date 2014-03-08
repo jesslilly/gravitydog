@@ -1,6 +1,6 @@
 console.log("clickable.js loaded");
 
-var Clickable = (function() {
+define([ "vg/sprite", "vg/vg" ], function(Sprite, vg) {
 
 	var Clickable = function(ix, iy, w, h, color) {
 		Sprite.call(this, ix, iy, w, h, color);
@@ -27,9 +27,9 @@ var Clickable = (function() {
 	};
 	Clickable.prototype.clickTest = function(cx, cy) {
 		var rect = this.getClickRect();
-		return vg.hitTest(cx, cy, rect.x, rect.y, rect.width,
-				rect.height);
+		return vg.hitTest(cx, cy, rect.x, rect.y, rect.width, rect.height);
 	};
 
 	return Clickable;
-})();
+
+});
