@@ -21,6 +21,7 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 	ctx.mozImageSmoothingEnabled = false;
 
 	var a = null;
+	var levelBanner = null;
 
 	// Score needed to advance the level. There is only 1 level right now. lol.
 	// Monday = Easy, Sunday = Hard, just like NYT Crossword.
@@ -130,6 +131,7 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 	var newGame = function() {
 		a.clear();
 		vg.setScore(0);
+		level = 0;
 		level1Sprites();
 		addScore();
 		a.go();
@@ -143,6 +145,9 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 	};
 
 	var level1Sprites = function() {
+
+		// Normally just level++ unless we are at zero.
+		level += (level === 0) ? 0 : 1;
 
 		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
@@ -162,18 +167,6 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 				// };
 			}
 		};
-		
-		// Words
-		var words = new Sprite(150, 100, 0, 0);
-		words.draw = function(ctx) {
-			var msg = "LEVEL 1";
-			ctx.font = "32pt silkscreennormal";
-			ctx.fillStyle = "black";
-			ctx.fillText(msg, this.x, this.y);
-			ctx.fillStyle = "white";
-			ctx.fillText(msg, this.x + 2, this.y + 2);
-		};
-		a.add(2, words);
 
 		// Add star field!
 		for ( var idx = 0; idx < 10; idx++) {
@@ -201,12 +194,14 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		};
 		dog.click = function() {
 			SpaceDog.prototype.click.call(this);
-			words.setVelocity(5,0);
+			levelBanner.setVelocity(5, 0);
 		};
 		a.add(1, dog);
 	};
 
 	var level2Sprites = function() {
+
+		level++;
 
 		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
@@ -261,6 +256,7 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 			};
 			lane.click = function() {
 				dog.x = this.x - 30;
+				levelBanner.setVelocity(5, 0);
 			};
 			a.add(2, lane);
 		});
@@ -288,6 +284,18 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		// Score bg, so bugz mode does not affect score.
 		var bg = new Prop(4, 4, 180, 40, "black");
 		a.add(0, bg);
+
+		// levelBanner
+		levelBanner = new Sprite(150, 100, 0, 0);
+		levelBanner.draw = function(ctx) {
+			var msg = "LEVEL " + (level + 1);
+			ctx.font = "32pt silkscreennormal";
+			ctx.fillStyle = "black";
+			ctx.fillText(msg, this.x, this.y);
+			ctx.fillStyle = "white";
+			ctx.fillText(msg, this.x + 2, this.y + 2);
+		};
+		a.add(2, levelBanner);
 
 		// URL
 		var url = new Prop(200, 480 - 10, 0, 0);
