@@ -1,7 +1,6 @@
 console.log("main.js loaded");
 
-require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite",
-		"spacedog", "star" ], function(vg, Animator, Clickable, Prop, Sprite, SpaceDog, Star) {
+require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "spacedog", "star" ], function(vg, Animator, Clickable, Prop, Sprite, SpaceDog, Star) {
 
 	var sprites = document.getElementById("sprites");
 
@@ -26,6 +25,7 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite",
 	// Score needed to advance the level. There is only 1 level right now. lol.
 	// Monday = Easy, Sunday = Hard, just like NYT Crossword.
 	// 24,25,26,27,28,29,30
+	var difficulty = (window.location.port === "40001") ? 14 : 30;
 	var level = 0;
 	var numLevels = 2;
 	var advanceAt = [];
@@ -35,7 +35,7 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite",
 	// Reverse it now so Monday = 6 and Sunday = 0;
 	var handyCap = 6 - day;
 	for ( var idx = 0; idx < numLevels; idx++) {
-		advanceAt.push(30 - handyCap);
+		advanceAt.push(difficulty - handyCap);
 	}
 
 	var main = function() {
@@ -58,14 +58,12 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite",
 		canvas.style.background = '#000000';
 		if (orientation === "landscape") {
 			document.getElementById('content').style.height = smaller + "px";
-			document.getElementById('content').style.width = (smaller * 1.5)
-					+ "px";
+			document.getElementById('content').style.width = (smaller * 1.5) + "px";
 			// ad.style.height = smaller + "px";
 			// ad.style.width = (smaller * .5) + "px";
 		} else {
 			document.getElementById('content').style.width = smaller + "px";
-			document.getElementById('content').style.height = (smaller * 1.5)
-					+ "px";
+			document.getElementById('content').style.height = (smaller * 1.5) + "px";
 			// ad.style.width = smaller + "px";
 			// ad.style.height = (smaller * .5) + "px";
 		}
@@ -85,16 +83,14 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite",
 		a.clear();
 
 		// Draw background.
-		var bg1 = new Clickable(0, 0, canvas.width / 2, canvas.height,
-				"#999944");
+		var bg1 = new Clickable(0, 0, canvas.width / 2, canvas.height, "#999944");
 		bg1.update = function() {
 		};
 		bg1.click = function() {
 			newGame();
 		};
 		a.add(0, bg1);
-		var bg2 = new Clickable(canvas.width / 2, 0, canvas.width / 2,
-				canvas.height, "#444499");
+		var bg2 = new Clickable(canvas.width / 2, 0, canvas.width / 2, canvas.height, "#444499");
 		bg2.update = function() {
 		};
 		bg2.click = function() {
@@ -115,16 +111,14 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite",
 		a.add(2, words);
 		var japanese = new Prop(170, 50, 52 * 2, 17 * 2);
 		japanese.draw = function(ctx) {
-			ctx.drawImage(sprites, 119, 113, 52, 17, this.x, this.y,
-					this.width, this.height);
+			ctx.drawImage(sprites, 119, 113, 52, 17, this.x, this.y, this.width, this.height);
 		};
 		a.add(2, japanese);
 
 		// play Button
 		var play = new Clickable(210, 240, 60, 60);
 		play.draw = function(ctx) {
-			ctx.drawImage(sprites, 132, 40, 30, 30, this.x, this.y, this.width,
-					this.height);
+			ctx.drawImage(sprites, 132, 40, 30, 30, this.x, this.y, this.width, this.height);
 		};
 		play.click = function() {
 			newGame();
@@ -168,24 +162,33 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite",
 				// };
 			}
 		};
+		
+		// Words
+		var words = new Sprite(150, 100, 0, 0);
+		words.draw = function(ctx) {
+			var msg = "LEVEL 1";
+			ctx.font = "32pt silkscreennormal";
+			ctx.fillStyle = "black";
+			ctx.fillText(msg, this.x, this.y);
+			ctx.fillStyle = "white";
+			ctx.fillText(msg, this.x + 2, this.y + 2);
+		};
+		a.add(2, words);
 
 		// Add star field!
 		for ( var idx = 0; idx < 10; idx++) {
-			var star = new Star(Math.random() * canvas.width, Math.random()
-					* canvas.height, 3, 3);
-			star.setVelocity((Math.random() * 1.5) + 1 , 0);
+			var star = new Star(Math.random() * canvas.width, Math.random() * canvas.height, 3, 3);
+			star.setVelocity((Math.random() * 1.5) + 1, 0);
 			a.add(0, star);
 		}
 
 		// Add the earth!
-		var earth = new Star(Math.random() * canvas.width, Math.random()
-				* canvas.height, 114, 114);
+		var earth = new Star(Math.random() * canvas.width, Math.random() * canvas.height, 114, 114);
 		earth.x -= earth.width / 2;
 		earth.y -= earth.height / 2;
-		earth.setVelocity(.5 , 0);
+		earth.setVelocity(.5, 0);
 		earth.draw = function(ctx) {
-			ctx.drawImage(sprites, 0, 93, 114, 114, this.x, this.y, this.width,
-					this.height);
+			ctx.drawImage(sprites, 0, 93, 114, 114, this.x, this.y, this.width, this.height);
 		};
 		a.add(1, earth);
 
@@ -194,8 +197,11 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite",
 		// dog.setVector(45, 1);
 		// TODO: Move images to the Sprite class.
 		dog.draw = function(ctx) {
-			ctx.drawImage(sprites, 0, 0, 118, 88, this.x, this.y, this.width,
-					this.height);
+			ctx.drawImage(sprites, 0, 0, 118, 88, this.x, this.y, this.width, this.height);
+		};
+		dog.click = function() {
+			SpaceDog.prototype.click.call(this);
+			words.setVelocity(5,0);
 		};
 		a.add(1, dog);
 	};
@@ -211,11 +217,26 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite",
 		a.add(0, bg);
 
 		// Add star field!
-		for ( var idx = 0; idx < 15; idx++) {
+		for ( var idx = 0; idx < 20; idx++) {
 			var star = new Star(canvas.width / 2, 10, 1, 1, "#FFFFFF");
-			star.setVector(Math.random() * 180, (Math.random() * 1.5) + 1);
-			star.reappear = star.center;
-			star.update500 = star.increase;
+			star.setVector(Math.random() * 180, (Math.random()) + .5);
+			star.reappear = function() {
+				this.setVector(Math.random() * 180, (Math.random()) + .5);
+				this.center();
+			};
+			star.update500 = function() {
+				// Accelerate
+				this.vx *= 1.2;
+				this.vy *= 1.2;
+				// And get bigger proportonal to speed.
+				this.width += (this.width * this.speed > 1) ? .5 : 0;
+				this.height += (this.height * this.speed > 1) ? .5 : 0;
+			};
+			// Spread the stars out from the center.
+			var distance = Math.random() * canvas.width / 2;
+			star.x += star.vx * distance;
+			star.y += star.vy * distance;
+
 			a.add(0, star);
 		}
 
@@ -224,10 +245,26 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite",
 		// dog.setVector(45, 1);
 		// TODO: Move images to the Sprite class.
 		dog.draw = function(ctx) {
-			ctx.drawImage(sprites, 0, 0, 118, 88, this.x, this.y, this.width,
-					this.height);
+			ctx.drawImage(sprites, 0, 0, 118, 88, this.x, this.y, this.width, this.height);
+		};
+		dog.click = function() {
 		};
 		a.add(1, dog);
+
+		// Add clickable areas.
+		var lanes = [];
+		lanes[0] = new Clickable(0, 0, canvas.width * 1 / 3, canvas.height, "rgba(255, 255, 255, .8)");
+		lanes[1] = new Clickable(canvas.width * 1 / 3, 0, canvas.width * 1 / 3, canvas.height, "rgba(255, 255, 255, .8)");
+		lanes[2] = new Clickable(canvas.width * 2 / 3, 0, canvas.width * 1 / 3, canvas.height, "rgba(255, 255, 255, .8)");
+		lanes.forEach(function(lane) {
+			lane.draw = function() {
+			};
+			lane.click = function() {
+				dog.x = this.x - 30;
+			};
+			a.add(2, lane);
+		});
+
 	};
 
 	var addScore = function() {
@@ -235,8 +272,7 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite",
 		// Score Icon
 		var scoreIcon = new Prop(10, 10, 29, 29);
 		scoreIcon.draw = function(ctx) {
-			ctx.drawImage(sprites, 133, 8, 29, 29, this.x, this.y, this.width,
-					this.height);
+			ctx.drawImage(sprites, 133, 8, 29, 29, this.x, this.y, this.width, this.height);
 		};
 		a.add(2, scoreIcon);
 
@@ -275,8 +311,7 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite",
 		a.add(2, popup);
 		var words = new Prop(130, 160, 0, 0);
 		words.draw = function(ctx) {
-			var msg = (vg.getScore() >= advanceAt[level]) ? "Nice JOB!"
-					: "Get " + advanceAt[level] + "  !";
+			var msg = (vg.getScore() >= advanceAt[level]) ? "Nice JOB!" : "Get " + advanceAt[level] + "  !";
 			ctx.font = "30pt silkscreennormal";
 			ctx.fillStyle = "black";
 			ctx.fillText(msg, this.x, this.y);
@@ -289,8 +324,7 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite",
 			// Score Icon
 			var scoreIcon = new Prop(290, 137, 29, 29);
 			scoreIcon.draw = function(ctx) {
-				ctx.drawImage(sprites, 133, 8, 29, 29, this.x, this.y,
-						this.width, this.height);
+				ctx.drawImage(sprites, 133, 8, 29, 29, this.x, this.y, this.width, this.height);
 			};
 			a.add(2, scoreIcon);
 		}
@@ -298,8 +332,7 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite",
 		// Home Button
 		var home = new Clickable(160, 200, 60, 60);
 		home.draw = function(ctx) {
-			ctx.drawImage(sprites, 132, 74, 30, 30, this.x, this.y, this.width,
-					this.height);
+			ctx.drawImage(sprites, 132, 74, 30, 30, this.x, this.y, this.width, this.height);
 		};
 		home.click = function() {
 			introScreen();
@@ -309,8 +342,7 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite",
 		// Play Button
 		var play = new Clickable(260, 200, 60, 60);
 		play.draw = function(ctx) {
-			ctx.drawImage(sprites, 132, 40, 30, 30, this.x, this.y, this.width,
-					this.height);
+			ctx.drawImage(sprites, 132, 40, 30, 30, this.x, this.y, this.width, this.height);
 		};
 		play.click = function() {
 			newGame();

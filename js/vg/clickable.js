@@ -29,6 +29,9 @@ define([ "vg/sprite", "vg/vg" ], function(Sprite, vg) {
 		var rect = this.getClickRect();
 		return vg.hitTest(cx, cy, rect.x, rect.y, rect.width, rect.height);
 	};
+	Clickable.prototype.click = function() {
+		console.log("Assign a click method!");
+	};
 
 	return Clickable;
 

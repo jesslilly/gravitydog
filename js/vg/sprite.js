@@ -54,8 +54,8 @@ define([ "vg/prop" ], function(Prop) {
 		var radians = degrees * Math.PI / 180;
 		pair.vy = speed * Math.sin(radians);
 		pair.vx = speed * Math.cos(radians);
-		console.log(degrees + " degrees @ " + speed + "=(" + pair.vx + ","
-				+ pair.vy + ")");
+		//console.log(degrees + " degrees @ " + speed + "=(" + pair.vx + ","
+		//		+ pair.vy + ")");
 		return pair;
 	};
 
