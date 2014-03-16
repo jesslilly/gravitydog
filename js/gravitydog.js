@@ -1,6 +1,6 @@
 console.log("main.js loaded");
 
-require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "spacedog", "star" ], function(vg, Animator, Clickable, Prop, Sprite, SpaceDog, Star) {
+require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "spacedog", "star", "onion" ], function(vg, Animator, Clickable, Prop, Sprite, SpaceDog, Star, Onion) {
 
 	var sprites = document.getElementById("sprites");
 
@@ -234,6 +234,17 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 
 			a.add(0, star);
 		}
+
+		// Get a random number: 0, 1, or 2.
+		Math.floor( Math.random() * 3);
+		var onions = [];
+		onions[0] = new Onion(canvas.width / 2, 10, 80, 80, "#FFFFFF");
+		onions[0].setVector(Math.random() * 180, (Math.random()) + .5);
+		onions[1] = new Onion(canvas.width / 2, 10, 80, 80, "#FFFFFF");
+		onions[1].setVector(Math.random() * 180, (Math.random()) + .5);
+		onions.forEach(function(onion) {
+			a.add(2, onion);
+		});
 
 		// Add the dog!
 		var dog = new SpaceDog(120, 340, 118 * 2, 88 * 2, gameOver);
