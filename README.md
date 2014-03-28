@@ -4,7 +4,8 @@ Gravity Dog
 Gravity Dog game
 
 # TODO
-1. Prioritize this list better.
+1. In level 2.  Add some randomly positioned stars that do not move.  = depth.
+2. Prioritize this list better.
 1. Implement mode 2: asteroids try to hit gravity dog.
 1. change stars to radiate out from the center.  Increase all star speed with each click.
 2. Progressively harder levels
