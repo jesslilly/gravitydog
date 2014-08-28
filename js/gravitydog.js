@@ -80,7 +80,6 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 	};
 
 	var introScreen = function() {
-		document.getElementById("whistle").play();
 		a.clear();
 
 		// Draw background.
