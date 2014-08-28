@@ -22,7 +22,9 @@ Gravity Dog game
 7. Audio - respect sound MUTE
 3. Mouse pointer should be a hand and not arrow in desktop mode.
 2. stars image
-2. Put in some kind of funny <HTML> tags and reverse video squares in bugz mode.
+2. Put in some kind of funny
+<html>
+ tags and reverse video squares in bugz mode.
 5. scale canvas with no antialiasing instead of resizing canvas.
 1. intro animation;  Space dog's spaceship blows up.
 1. Make a trailing broken tether.
@@ -58,6 +60,7 @@ Gravity Dog game
 1. best score - NOT IMPLEMENTED
 
 # Ideas
+* One of the levels should have LOTS of dogs and puppies.  Puppies could have accessories.
 * Points are eggs, or waffles
 * Characters are kitties, robots, or robo-kitties.
 * cameos: Lego brick, Mario?, Sonic?
