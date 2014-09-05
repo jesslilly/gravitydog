@@ -23,20 +23,13 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 	var a = null;
 	var levelBanner = null;
 
-	// Score needed to advance the level. There is only 1 level right now. lol.
-	// Monday = Easy, Sunday = Hard, just like NYT Crossword.
-	// 24,25,26,27,28,29,30
-	var difficulty = (window.location.port === "40001") ? 14 : 30;
+	// Score needed to advance the level.
+	var difficulty = (window.location.port === "40001") ? 10 : 25;
 	var level = 0;
 	var numLevels = 2;
 	var advanceAt = [];
-	var day = (new Date()).getDay();
-	// Move day to start from Monday = 0 to Sunday = 6.
-	day = (day === 0) ? 6 : day - 1;
-	// Reverse it now so Monday = 6 and Sunday = 0;
-	var handyCap = 6 - day;
 	for ( var idx = 0; idx < numLevels; idx++) {
-		advanceAt.push(difficulty - handyCap);
+		advanceAt.push(difficulty);
 	}
 
 	var main = function() {
@@ -90,6 +83,30 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		    newGame();
 		};
 		a.add(0, bg);
+
+	    // Add star field!
+        for (var idx = 0; idx < 20; idx++) {
+            var star = new Star(canvas.width / 2, 10, 1, 1, "#FFFFFF");
+            star.setVector(Math.random() * 180, (Math.random()) +.5);
+            star.reappear = function() {
+                this.setVector(Math.random() * 180, (Math.random()) + .5);
+                this.center();
+            };
+            star.update500 = function() {
+                // Accelerate
+                this.vx *= 1.2;
+                this.vy *= 1.2;
+                // And get bigger proportonal to speed.
+                this.width += (this.width * this.speed > 1) ? .5: 0;
+                this.height += (this.height * this.speed > 1) ? .5: 0;
+            };
+            // Spread the stars out from the center.
+            var distance = Math.random() * canvas.width / 2;
+            star.x += star.vx * distance;
+            star.y += star.vy * distance;
+
+            a.add(0, star);
+        }
 
 		// Words
 		var words = new Prop(40, 40, 0, 0);
