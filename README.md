@@ -1,7 +1,7 @@
 Gravity Dog
 ===========
 
-Play [Gravity Dog](www.sparkyland.com/gravitydog) for free!  It's fun!
+Play [Gravity Dog](http://www.sparkyland.com/gravitydog) for free!  It's fun!
 
 # TODO
 1. Change to mobile Adsense unit. 
