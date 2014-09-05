@@ -1,34 +1,32 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Gravity Dog</title>
-<link rel="stylesheet" type="text/css" href="css/style.css"
-	media="screen" />
-	<script src="js/verge.min.js"></script>
-	<script data-main="build/js/gravitydog.min.js" src="js/require.js"></script>
+    <meta charset="utf-8">
+    <title>Gravity Dog</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"
+          media="screen" />
+    <script src="js/verge.min.js"></script>
+    <script data-main="build/js/gravitydog.min.js" src="js/require.js"></script>
 </head>
 <body class="nomargin no-text-select">
-	<div id="content" style="width: 480px; height: 480px;">
-		<div class="flow" unselectable="on">
-			<canvas id="canvas" class="pixelated" width="480" height="480">I'm sorry.  You can't play the game on this browser.  Try a newer browser.</canvas>
-		</div>
+    <div id="content">
+        <div class="flow game" unselectable="on">
+            <canvas id="canvas" class="pixelated" width="480" height="480">I'm sorry.  You can't play the game on this browser.  Try a newer browser.</canvas>
+        </div><div class="flow spacer"></div><div class="flow ad">
+            <script async
+                    src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- Gravity Dog Ad -->
 
-		<div class="flow ad" style="width: 25%";>
-			<script async
-				src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-			<!-- Gravity Dog Ad -->
-			<ins class="adsbygoogle" style="display: block"
-				data-ad-client="ca-pub-8525289492361616" data-ad-slot="6972347028"
-				data-ad-format="auto"></ins>
-			<script>
-				(adsbygoogle = window.adsbygoogle || []).push({});
-			</script>
-		</div>
-	</div>
-
-	<img id="sprites" class="invisible" src="img/sprites.png"
-		alt="Could not load sprites.png!" />
-	<span id="messages"></span>
+            <ins class="adsbygoogle" style="display: block"
+                 data-ad-client="ca-pub-8525289492361616" data-ad-slot="6972347028"
+                 data-ad-format="auto"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+    <img id="sprites" class="invisible" src="img/sprites.png"
+         alt="Could not load sprites.png!" />
+    <span id="messages"></span>
 </body>
 </html>

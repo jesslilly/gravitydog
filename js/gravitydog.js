@@ -58,8 +58,8 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		canvas.style.height = smaller + "px";
 		canvas.style.background = '#000000';
 		if (orientation === "landscape") {
-			document.getElementById('content').style.height = smaller + "px";
-			document.getElementById('content').style.width = (smaller * 1.5) + "px";
+		    document.getElementById('content').style.height = smaller + "px";
+		    document.getElementById('content').style.width = (smaller * 1.5) + "px";
 			// ad.style.height = smaller + "px";
 			// ad.style.width = (smaller * .5) + "px";
 		} else {
@@ -83,20 +83,13 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		a.clear();
 
 		// Draw background.
-		var bg1 = new Clickable(0, 0, canvas.width / 2, canvas.height, "#999944");
-		bg1.update = function() {
+		var bg = new Clickable(0, 0, canvas.width, canvas.height, "#000000");
+		bg.update = function () {
 		};
-		bg1.click = function() {
-			newGame();
+		bg.click = function () {
+		    newGame();
 		};
-		a.add(0, bg1);
-		var bg2 = new Clickable(canvas.width / 2, 0, canvas.width / 2, canvas.height, "#444499");
-		bg2.update = function() {
-		};
-		bg2.click = function() {
-			newGame();
-		};
-		a.add(0, bg2);
+		a.add(0, bg);
 
 		// Words
 		var words = new Prop(40, 40, 0, 0);
