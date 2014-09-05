@@ -5,6 +5,7 @@ Play [Gravity Dog](http://www.sparkyland.com/gravitydog) for free!  It's fun!
 
 # TODO
 1. Change to mobile Adsense unit. 
+1. I need a favicon!
 1. In level 2.  Add some randomly positioned stars that do not move.  = depth.
 2. Prioritize this list better.
 1. Implement mode 2: asteroids try to hit gravity dog.
