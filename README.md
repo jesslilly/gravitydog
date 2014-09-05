@@ -4,6 +4,7 @@ Gravity Dog
 Play [Gravity Dog](www.sparkyland.com/gravitydog) for free!  It's fun!
 
 # TODO
+1. Change to mobile Adsense unit. 
 1. In level 2.  Add some randomly positioned stars that do not move.  = depth.
 2. Prioritize this list better.
 1. Implement mode 2: asteroids try to hit gravity dog.
@@ -12,7 +13,6 @@ Play [Gravity Dog](www.sparkyland.com/gravitydog) for free!  It's fun!
 1. Implement dual graphics system.  (Sprites.png for space dog and robot dog)
 8. Make shortcut/bookmark.
 9. Offline mode
-2. Set up Adsense and Analytics.
 1. framework improvement: Better constructor for Prop/Sprite that takes an image name.
 1. framework improvement: Add a sprite to a sprite instead of just to the animator.
 3. bugz mode indicator.
