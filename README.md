@@ -1,7 +1,7 @@
 Gravity Dog
 ===========
 
-Gravity Dog game
+Play [Gravity Dog](www.sparkyland.com/gravitydog) for free!  It's fun!
 
 # TODO
 1. In level 2.  Add some randomly positioned stars that do not move.  = depth.
