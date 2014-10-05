@@ -4,6 +4,8 @@ Gravity Dog
 Play [Gravity Dog](http://www.sparkyland.com/gravitydog) for free!  It's fun!
 
 # TODO
+1. Add one of those apple-favicon thingies.
+1. MORE DOGSSSS!!!
 1. Find tutorial/how to for iOS 7 mobile Adsense unit. 
 1. Revert commits for responsive ad attempt. 
 1. Make one orientation. Have ad on top. Scroll down to play game. 

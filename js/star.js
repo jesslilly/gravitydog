@@ -26,8 +26,8 @@ define([ "vg/vg", "vg/prop", "vg/sprite" ], function(vg, Prop, Sprite) {
 		this.y = Math.random() * Sprite.bHeight;
 	};
 	Star.prototype.center = function() {
-		this.width = 1;
-		this.height = 1;
+		this.width = 2;
+		this.height = 2;
 		this.x = Sprite.bHeight / 2;
 		this.y = 10;
 	};

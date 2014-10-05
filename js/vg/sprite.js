@@ -27,7 +27,7 @@ define([ "vg/prop" ], function(Prop) {
 	Sprite.prototype.setVelocity = function(vx, vy) {
 		this.vx = vx;
 		this.vy = vy;
-		this.speed = null; // For speed, don't calc it.
+	    this.speed = Math.sqrt(vx * vx + vy * vy);
 	};
 	Sprite.prototype.setVector = function(dir, speed) {
 		var vel = Sprite.vectorToVelocity(dir, speed);

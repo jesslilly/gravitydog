@@ -78,21 +78,25 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		a.add(0, bg);
 
 	    // Add star field!
-        for (var idx = 0; idx < 20; idx++) {
-            var star = new Star(canvas.width / 2, 10, 1, 1, "#FFFFFF");
-            star.setVector(Math.random() * 180, (Math.random()) +.5);
+        for (var idx = 0; idx < 30; idx++) {
+            var star = new Star(canvas.width / 2, 10, 2, 2, "#FFFFFF");
+            star.setVector(Math.random() * 180, (Math.random()) +.1);
             star.reappear = function() {
-                this.setVector(Math.random() * 180, (Math.random()) + .5);
+                this.setVector(Math.random() * 180, (Math.random()) + .1);
                 this.center();
             };
-            star.update500 = function() {
-                // Accelerate
-                this.vx *= 1.2;
-                this.vy *= 1.2;
-                // And get bigger proportonal to speed.
-                this.width += (this.width * this.speed > 1) ? .5: 0;
-                this.height += (this.height * this.speed > 1) ? .5: 0;
-            };
+            if (idx < 20) {
+                star.update500 = function() {
+                    // Accelerate
+                    this.setVelocity(this.vx *= 1.2, this.vy *= 1.2);
+                    // And get bigger proportonal to speed.
+                    this.width += (this.width * this.speed > 1.5) ? .5 : 0;
+                    this.height += (this.height * this.speed > 1.5) ? .5 : 0;
+                };
+            } else {
+                // Some stars are slow/small.
+                star.update500 = function () {};
+            }
             // Spread the stars out from the center.
             var distance = Math.random() * canvas.width / 2;
             star.x += star.vx * distance;
@@ -101,32 +105,57 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
             a.add(0, star);
         }
 
-		// Words
-		var words = new Prop(40, 40, 0, 0);
-		words.draw = function(ctx) {
-			var msg = "GRAVITY DOG!!";
-			ctx.font = "32pt silkscreennormal";
-			ctx.fillStyle = "black";
-			ctx.fillText(msg, this.x, this.y);
-			ctx.fillStyle = "white";
-			ctx.fillText(msg, this.x + 2, this.y + 2);
-		};
-		a.add(2, words);
-		var japanese = new Prop(170, 50, 52 * 2, 17 * 2);
-		japanese.draw = function(ctx) {
-			ctx.drawImage(sprites, 119, 113, 52, 17, this.x, this.y, this.width, this.height);
-		};
-		a.add(2, japanese);
+	    // Title
+        var gravity = new Prop(-20, 20, 175 * 3, 55 * 3);
+        gravity.currentAngle = 0;
+	    gravity.clockWise = true;
+	    gravity.draw = function (ctx) {
+	        var offSetX = canvas.width / 2;
+	        var offSetY = 50;
+	        ctx.save();
+	        ctx.translate(offSetX, offSetY);
+	        ctx.rotate(this.currentAngle * Math.PI / 180);
+	        ctx.drawImage(sprites, 0, 210, 175, 55, this.x - offSetX, this.y - offSetY, this.width, this.height);
+	        ctx.restore();
+	    };
+	    gravity.update = function () {
+	        if (Math.abs(this.currentAngle) > 5) {
+	            this.clockWise = !this.clockWise;
+	        }
+	        this.currentAngle += this.clockWise ? .03 : -.03;
+	    };
+	    a.add(2, gravity);
+	    var dog = new Prop(110, 150, 110 * 2.5, 47 * 2.5);
+	    dog.draw = function (ctx) {
+	        ctx.drawImage(sprites, 0, 267, 110, 47, this.x, this.y, this.width, this.height);
+	    };
+	    a.add(1, dog);
 
 		// play Button
-		var play = new Clickable(210, 240, 60, 60);
+		var play = new Clickable(140, 230, 60 * 2, 60 * 2);
 		play.draw = function(ctx) {
 			ctx.drawImage(sprites, 132, 40, 30, 30, this.x, this.y, this.width, this.height);
 		};
 		play.click = function() {
 			newGame();
 		};
+	    play.update = function() {
+	        this.vOscillate(1);
+	    }
 		a.add(2, play);
+
+		var japanese = new Prop(110, 390, 52 * 2, 17 * 2);
+		japanese.draw = function (ctx) {
+		    ctx.drawImage(sprites, 119, 113, 52, 17, this.x, this.y, this.width, this.height);
+		};
+		a.add(2, japanese);
+
+		var spaceDog = new Prop(240, 200, 118 * 5, 88 * 5);
+		spaceDog.draw = function (ctx) {
+		    ctx.drawImage(sprites, 0, 0, 118, 88, this.x, this.y, this.width, this.height);
+		};
+		a.add(2, spaceDog);
+
 		a.go();
 	};
 
@@ -153,7 +182,9 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		    if (vg.getScore() >= bugzModeScore) {
 				bg.draw = function() {
 				};
-			}
+				ctx.rotate(1 * Math.PI / 180);
+		        a.customAnimationHook = function() {};
+		    }
 		};
 
 		// Add star field!
