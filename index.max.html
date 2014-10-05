@@ -9,37 +9,23 @@
 	<script data-main="js/gravitydog" src="js/require.js"></script>
 </head>
 <body class="nomargin no-text-select">
-	<div id="game-div" style="width: 480px; height: 480px;">
-		<div class="flow" unselectable="on">
-			<canvas id="canvas" class="pixelated" width="480" height="480">I'm sorry.  You can't play the game on this browser.  Try a newer browser.</canvas>
-		</div>
-
-		<div class="flow ad" style="width: 25%";>
-			<script async
-				src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-			<!-- Gravity Dog Ad -->
-			<ins class="adsbygoogle" style="display: block"
-				data-ad-client="ca-pub-8525289492361616" data-ad-slot="6972347028"
-				data-ad-format="auto"></ins>
-			<script>
-				(adsbygoogle = window.adsbygoogle || []).push({});
-			</script>
-		</div>
-	</div>
-
-	<img id="sprites" class="invisible" src="img/sprites.png"
-		alt="Could not load sprites.png!" />
-	<span id="messages"></span>
-
-	<!-- 
-	<script src="js/vg.js"></script>
-	<script src="js/prop.js"></script>
-	<script src="js/sprite.js"></script>
-	<script src="js/clickable.js"></script>
-	<script src="js/animator.js"></script>
-	<script src="js/grid.js"></script>
-	<script src="js/zsprites.js"></script>
-	<script src="js/gravitydog.js"></script>
-	 -->
+    <div id="content">
+        <div class="flow game" unselectable="on">
+            <canvas id="canvas" class="pixelated" width="480" height="480">I'm sorry.  You can't play the game on this browser.  Try a newer browser.</canvas>
+        </div><div class="flow spacer"></div><div class="flow ad">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- Gravity Dog Mobile Banner -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:320px;height:50px"
+                 data-ad-client="ca-pub-8525289492361616"
+                 data-ad-slot="8666267023"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+    <img id="sprites" class="invisible" src="img/sprites.png"
+         alt="Could not load sprites.png!" />
+    <span id="messages"></span>
 </body>
 </html>

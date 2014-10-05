@@ -3,8 +3,10 @@ console.log("main.js loaded");
 require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "spacedog", "star", "onion" ], function(vg, Animator, Clickable, Prop, Sprite, SpaceDog, Star, Onion) {
 
 	var sprites = document.getElementById("sprites");
-
 	var canvas = document.getElementById('canvas');
+	var aGoodScore = (window.location.port === "40001") ? 10 : 30;
+	var bugzModeScore = (window.location.port === "40001") ? 15 : 100;
+
 	// var ad = document.getElementsByClassName('gravity-dog-ad')[0];
 
 	var scaleFactor = 1; // It's always a square, so it's the same for x and
@@ -21,16 +23,7 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 	ctx.mozImageSmoothingEnabled = false;
 
 	var a = null;
-	var levelBanner = null;
-
-	// Score needed to advance the level.
-	var difficulty = (window.location.port === "40001") ? 10 : 25;
-	var level = 0;
-	var numLevels = 2;
-	var advanceAt = [];
-	for ( var idx = 0; idx < numLevels; idx++) {
-		advanceAt.push(difficulty);
-	}
+	var startBanner = null;
 
 	var main = function() {
 
@@ -140,23 +133,12 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 	var newGame = function() {
 		a.clear();
 		vg.setScore(0);
-		level = 0;
 		level1Sprites();
 		addScore();
 		a.go();
 	};
 
-	var level2 = function() {
-		a.clear();
-		level2Sprites();
-		addScore();
-		a.go();
-	};
-
 	var level1Sprites = function() {
-
-		// Normally just level++ unless we are at zero.
-		level += (level === 0) ? 0 : 1;
 
 		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
@@ -168,12 +150,9 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		// Go into buggy animation level when you get a nice high score.
 		// TODO: Improve efficiency by moving this check to SpaceDog.click.
 		a.customAnimationHook = function() {
-			if (vg.getScore() >= advanceAt[level]) {
-				level2();
-				a.customAnimationHook = function() {
+		    if (vg.getScore() >= bugzModeScore) {
+				bg.draw = function() {
 				};
-				// bg.draw = function() {
-				// };
 			}
 		};
 
@@ -202,85 +181,11 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 			ctx.drawImage(sprites, 0, 0, 118, 88, this.x, this.y, this.width, this.height);
 		};
 		dog.click = function() {
-			SpaceDog.prototype.click.call(this);
-			levelBanner.setVelocity(5, 0);
+		    SpaceDog.prototype.click.call(this);
+		    startBanner.msg = "GO!!!!!";
+			startBanner.setVelocity(5, 0);
 		};
 		a.add(1, dog);
-	};
-
-	var level2Sprites = function() {
-
-		level++;
-
-		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
-		// Draw background.
-		var bg = new Sprite(0, 0, canvas.width, canvas.height, "#000000");
-		bg.update = function() {
-		};
-		a.add(0, bg);
-
-		// Add star field!
-		for ( var idx = 0; idx < 20; idx++) {
-			var star = new Star(canvas.width / 2, 10, 1, 1, "#FFFFFF");
-			star.setVector(Math.random() * 180, (Math.random()) + .5);
-			star.reappear = function() {
-				this.setVector(Math.random() * 180, (Math.random()) + .5);
-				this.center();
-			};
-			star.update500 = function() {
-				// Accelerate
-				this.vx *= 1.2;
-				this.vy *= 1.2;
-				// And get bigger proportonal to speed.
-				this.width += (this.width * this.speed > 1) ? .5 : 0;
-				this.height += (this.height * this.speed > 1) ? .5 : 0;
-			};
-			// Spread the stars out from the center.
-			var distance = Math.random() * canvas.width / 2;
-			star.x += star.vx * distance;
-			star.y += star.vy * distance;
-
-			a.add(0, star);
-		}
-
-		// Get a random number: 0, 1, or 2.
-		Math.floor( Math.random() * 3);
-		var onions = [];
-		onions[0] = new Onion(canvas.width / 2, 10, 80, 80, "#FFFFFF");
-		onions[0].setVector(Math.random() * 180, (Math.random()) + .5);
-		onions[1] = new Onion(canvas.width / 2, 10, 80, 80, "#FFFFFF");
-		onions[1].setVector(Math.random() * 180, (Math.random()) + .5);
-		onions.forEach(function(onion) {
-			a.add(2, onion);
-		});
-
-		// Add the dog!
-		var dog = new SpaceDog(120, 340, 118 * 2, 88 * 2, gameOver);
-		// dog.setVector(45, 1);
-		// TODO: Move images to the Sprite class.
-		dog.draw = function(ctx) {
-			ctx.drawImage(sprites, 0, 0, 118, 88, this.x, this.y, this.width, this.height);
-		};
-		dog.click = function() {
-		};
-		a.add(1, dog);
-
-		// Add clickable areas.
-		var lanes = [];
-		lanes[0] = new Clickable(0, 0, canvas.width * 1 / 3, canvas.height, "rgba(255, 255, 255, .8)");
-		lanes[1] = new Clickable(canvas.width * 1 / 3, 0, canvas.width * 1 / 3, canvas.height, "rgba(255, 255, 255, .8)");
-		lanes[2] = new Clickable(canvas.width * 2 / 3, 0, canvas.width * 1 / 3, canvas.height, "rgba(255, 255, 255, .8)");
-		lanes.forEach(function(lane) {
-			lane.draw = function() {
-			};
-			lane.click = function() {
-				dog.x = this.x - 30;
-				levelBanner.setVelocity(5, 0);
-			};
-			a.add(2, lane);
-		});
-
 	};
 
 	var addScore = function() {
@@ -306,16 +211,16 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		a.add(0, bg);
 
 		// levelBanner
-		levelBanner = new Sprite(150, 100, 0, 0);
-		levelBanner.draw = function(ctx) {
-			var msg = "LEVEL " + (level + 1);
+		startBanner = new Sprite(150, 100, 0, 0);
+	    startBanner.msg = "READY??";
+		startBanner.draw = function(ctx) {
 			ctx.font = "32pt silkscreennormal";
 			ctx.fillStyle = "black";
-			ctx.fillText(msg, this.x, this.y);
+			ctx.fillText(this.msg, this.x, this.y);
 			ctx.fillStyle = "white";
-			ctx.fillText(msg, this.x + 2, this.y + 2);
+			ctx.fillText(this.msg, this.x + 2, this.y + 2);
 		};
-		a.add(2, levelBanner);
+		a.add(2, startBanner);
 
 		// URL
 		var url = new Prop(200, 480 - 10, 0, 0);
@@ -339,7 +244,9 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		a.add(2, popup);
 		var words = new Prop(130, 160, 0, 0);
 		words.draw = function(ctx) {
-			var msg = (vg.getScore() >= advanceAt[level]) ? "Nice JOB!" : "Get " + advanceAt[level] + "  !";
+		    var msg = (vg.getScore() >= bugzModeScore)
+                ? "<p>BugzMode!</p>" : (vg.getScore() >= aGoodScore)
+                ? "Nice JOB!" : "Keep try!";
 			ctx.font = "30pt silkscreennormal";
 			ctx.fillStyle = "black";
 			ctx.fillText(msg, this.x, this.y);
@@ -347,15 +254,6 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 			ctx.fillText(msg, this.x + 2, this.y + 2);
 		};
 		a.add(2, words);
-
-		if (vg.getScore() < advanceAt[level]) {
-			// Score Icon
-			var scoreIcon = new Prop(290, 137, 29, 29);
-			scoreIcon.draw = function(ctx) {
-				ctx.drawImage(sprites, 133, 8, 29, 29, this.x, this.y, this.width, this.height);
-			};
-			a.add(2, scoreIcon);
-		}
 
 		// Home Button
 		var home = new Clickable(160, 200, 60, 60);
