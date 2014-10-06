@@ -1,6 +1,6 @@
 console.log("main.js loaded");
 
-require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "spacedog", "star" ], function(vg, Animator, Clickable, Prop, Sprite, SpaceDog, Star) {
+require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "spacepuppy", "spacedog", "star" ], function(vg, Animator, Clickable, Prop, Sprite, SpacePuppy, SpaceDog, Star) {
 
 	var sprites = document.getElementById("sprites");
 	var canvas = document.getElementById('canvas');
@@ -215,6 +215,18 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		    SpaceDog.prototype.click.call(this);
 		    startBanner.msg = "GO!!!!!";
 			startBanner.setVelocity(5, 0);
+
+            // If the score is a square...
+		    var squareOfScore = Math.sqrt(vg.getScore());
+            if (squareOfScore === Math.ceil(squareOfScore)) {
+                // Add a puppy!
+                var puppy = new SpacePuppy(dog.x, dog.y, 48*2, 44*2, function() {});
+		        puppy.draw = function(ctx) {
+			        ctx.drawImage(sprites, 0, 315, 48, 44, this.x, this.y, this.width, this.height);
+			    };
+                puppy.aboutFace();
+                a.add(1, puppy);
+            }
 		};
 		a.add(1, dog);
 	};
