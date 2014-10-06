@@ -7,18 +7,14 @@ Play [Gravity Dog](http://www.sparkyland.com/gravitydog) for free!  It's fun!
 1. Add one of those apple-favicon thingies.
 1. MORE DOGSSSS!!!
 1. Find tutorial/how to for iOS 7 mobile Adsense unit. 
-1. Revert commits for responsive ad attempt. 
+1. Revert commits for responsive ad attempt.
+1. I need a favicon!
+
+##Future
+1. Make shortcut/bookmark.
+1. Facebook sharing
 1. Make one orientation. Have ad on top. Scroll down to play game. 
 Scroll down is the only way to hide the browser "chrome".
-1. I need a favicon!
-1. In level 2.  Add some randomly positioned stars that do not move.  = depth.
-2. Prioritize this list better.
-1. Implement mode 2: asteroids try to hit gravity dog.
-1. change stars to radiate out from the center.  Increase all star speed with each click.
-2. Progressively harder levels
-1. Implement dual graphics system.  (Sprites.png for space dog and robot dog)
-8. Make shortcut/bookmark.
-9. Offline mode
 1. framework improvement: Better constructor for Prop/Sprite that takes an image name.
 1. framework improvement: Add a sprite to a sprite instead of just to the animator.
 3. bugz mode indicator.
@@ -28,9 +24,6 @@ Scroll down is the only way to hide the browser "chrome".
 7. Audio - respect sound MUTE
 3. Mouse pointer should be a hand and not arrow in desktop mode.
 2. stars image
-2. Put in some kind of funny
-<html>
- tags and reverse video squares in bugz mode.
 5. scale canvas with no antialiasing instead of resizing canvas.
 1. intro animation;  Space dog's spaceship blows up.
 1. Make a trailing broken tether.
