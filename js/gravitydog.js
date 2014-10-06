@@ -1,6 +1,6 @@
 console.log("main.js loaded");
 
-require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "spacedog", "star", "onion" ], function(vg, Animator, Clickable, Prop, Sprite, SpaceDog, Star, Onion) {
+require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "spacedog", "star" ], function(vg, Animator, Clickable, Prop, Sprite, SpaceDog, Star) {
 
 	var sprites = document.getElementById("sprites");
 	var canvas = document.getElementById('canvas');

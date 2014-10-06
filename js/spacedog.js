@@ -1,7 +1,10 @@
-console.log("zsprites.js loaded");
+console.log("spacedog.js loaded");
 
 define([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite" ], function(vg, Animator, Clickable, Prop, Sprite) {
 
+    // TODO: Implement factor pattern with dependency injection for all sprites/props.
+    // That way all sprites can have a reference to the animator and canvas.
+    // That will help with die() method so a sprite can remove itself from the animator.
 	var SpaceDog = function(ix, iy, w, h, gameOverCB) {
 		Clickable.call(this, ix, iy, w, h, "rgba(255,255,255,.7)");
 		this.gameOverCB = gameOverCB;
