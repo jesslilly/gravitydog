@@ -9,9 +9,10 @@ Play [Gravity Dog](http://www.sparkyland.com/gravitydog) for free!  It's fun!
 1. Fix gameover.
 1. Put puppies on layer behind gravity dog.
 1. bugz mode banner onscreen instead of on win.
-1. Add one of those apple-favicon thingies.
+1. Add one of those apple-favicon thingies.  (https://developer.apple.com/library/iad/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html)
 1. I need a favicon!
 1. Intro screen touch ups.
+2. Look into offline cache to play the game offline.
 1. Find tutorial/how to for iOS 7 mobile Adsense unit. 
 1. Revert commits for responsive ad attempt.
 
