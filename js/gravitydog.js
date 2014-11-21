@@ -180,6 +180,20 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		// TODO: Improve efficiency by moving this check to SpaceDog.click.
 		a.customAnimationHook = function() {
 		    if (vg.getScore() >= bugzModeScore) {
+
+		        var words = new Prop(-12, 80, 0, 0);
+		        words.draw = function (ctx) {
+		            var msg = "<p>BugzMode!</p>";
+		            ctx.font = "20pt monospace";
+		            ctx.fillStyle = "black";
+		            ctx.fillText(msg, this.x, this.y);
+		            ctx.fillStyle = "white";
+		            ctx.fillText(msg, this.x + 2, this.y + 2);
+		        };
+		        a.add(2, words);
+		        var wordsBg = new Prop(-40, 70, 560, 40, "cyan");
+		        a.add(0, wordsBg);
+
 				bg.draw = function() {
 				};
 				ctx.rotate(1 * Math.PI / 180);
@@ -291,8 +305,7 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		a.add(2, popup);
 		var words = new Prop(130, 160, 0, 0);
 		words.draw = function(ctx) {
-		    var msg = (vg.getScore() >= bugzModeScore)
-                ? "<p>BugzMode!</p>" : (vg.getScore() >= aGoodScore)
+		    var msg = (vg.getScore() >= aGoodScore)
                 ? "Nice JOB!" : "Keep try!";
 			ctx.font = "30pt silkscreennormal";
 			ctx.fillStyle = "black";

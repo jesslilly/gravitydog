@@ -4,8 +4,6 @@ Gravity Dog
 Play [Gravity Dog](http://www.sparkyland.com/gravitydog) for free!  It's fun!
 
 # TODO
-1. Put puppies on layer behind gravity dog.
-1. bugz mode banner onscreen instead of on win.
 1. Add one of those apple-favicon thingies.  (https://developer.apple.com/library/iad/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html)
 1. I need a favicon!
 1. Intro screen touch ups.
