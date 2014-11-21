@@ -5,8 +5,8 @@ define([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "spacep
     // TODO: Implement factor pattern with dependency injection for all sprites/props.
     // That way all sprites can have a reference to the animator and canvas.
     // That will help with die() method so a sprite can remove itself from the animator.
-	var SpaceDog = function(ix, iy, w, h, deathCb) {
-	    SpacePuppy.call(this, ix, iy, w, h, deathCb);
+	var SpaceDog = function(ix, iy, w, h, gameOverCb) {
+	    SpacePuppy.call(this, ix, iy, w, h, gameOverCb);
 	};
 	SpaceDog.prototype = new SpacePuppy();
 

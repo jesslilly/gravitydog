@@ -5,22 +5,34 @@ define([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite" ], funct
     // TODO: Implement factor pattern with dependency injection for all sprites/props.
     // That way all sprites can have a reference to the animator and canvas.
     // That will help with die() method so a sprite can remove itself from the animator.
-	var SpacePuppy = function(ix, iy, w, h, deathCb) {
+	var SpacePuppy = function(ix, iy, w, h, gameOverCb) {
 		Clickable.call(this, ix, iy, w, h, "rgba(255,255,255,.7)");
-		this.deathCb = deathCb;
+		this.gameOverCb = gameOverCb;
 		if (vg.isMobile()) {
 			this.setPadding(10);
 		}
+		SpacePuppy.dogCount++;
 	};
+
+    SpacePuppy.dogCount = 0;
+
 	SpacePuppy.prototype = new Clickable();
 
 	SpacePuppy.prototype.check500 = function() {
 		var clickRect = this.getClickRect();
 		if (!vg.hitTestRect(clickRect.x, clickRect.y, clickRect.width, clickRect.height, 0, 0, Sprite.bWidth, Sprite.bHeight)) {
-			this.check500 = function() {
-			};
-			this.deathCb();
+		    this.die();
 		}
+	};
+
+	SpacePuppy.prototype.die = function () {
+	    this.check500 = function () {
+	    };
+	    SpacePuppy.dogCount--;
+
+	    if (SpacePuppy.dogCount <= 0) {
+	        this.gameOverCb();
+	    }
 	};
 
 	SpacePuppy.prototype.click = function() {

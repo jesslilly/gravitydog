@@ -204,7 +204,8 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		};
 		a.add(1, earth);
 
-		// Add the dog!
+	    // Add the dog!
+	    SpacePuppy.dogCount = 0;
 		var dog = new SpaceDog(200, 200, 118 * 1.5, 88 * 1.5, gameOver);
 		// dog.setVector(45, 1);
 		// TODO: Move images to the Sprite class.
@@ -220,7 +221,7 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		    var squareOfScore = Math.sqrt(vg.getScore() - 5);
             if (squareOfScore === Math.ceil(squareOfScore)) {
                 // Add a puppy!
-                var puppy = new SpacePuppy(dog.x, dog.y, 48*2, 44*2, function() {});
+                var puppy = new SpacePuppy(dog.x, dog.y, 48 * 2, 44 * 2, gameOver);
 		        puppy.draw = function(ctx) {
 			        ctx.drawImage(sprites, 0, 315, 48, 44, this.x, this.y, this.width, this.height);
 			    };
@@ -279,7 +280,7 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 
 	};
 
-	var gameOver = function() {
+	var gameOver = function () {
 
 		// Popup
 		var popup = new Prop(120, 120, 240, 160, "rgba(255, 255, 255, .8)");

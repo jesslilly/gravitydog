@@ -4,9 +4,6 @@ Gravity Dog
 Play [Gravity Dog](http://www.sparkyland.com/gravitydog) for free!  It's fun!
 
 # TODO
-1. MORE DOGSSSS!!!
-1. Put gravity dog at original speed when he releases a puppy. 
-1. Fix gameover.
 1. Put puppies on layer behind gravity dog.
 1. bugz mode banner onscreen instead of on win.
 1. Add one of those apple-favicon thingies.  (https://developer.apple.com/library/iad/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html)
