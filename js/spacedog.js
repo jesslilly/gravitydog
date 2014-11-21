@@ -10,17 +10,17 @@ define([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "spacep
 	};
 	SpaceDog.prototype = new SpacePuppy();
 
-	SpaceDog.prototype.update1 = function() {
+	SpaceDog.prototype.floatInPlace = function() {
 		this.vOscillate(3);
 	};
 
-	SpaceDog.prototype.update2 = function() {
+	SpaceDog.prototype.drift = function() {
 		// Call super method.
 		Sprite.prototype.update.call(this);
 	};
 
 	// Initial "update" is just sitting there and oscillating.
-	SpaceDog.prototype.update = SpaceDog.prototype.update1;
+	SpaceDog.prototype.update = SpaceDog.prototype.floatInPlace;
 
 	SpaceDog.prototype.click = function() {
 
@@ -30,7 +30,7 @@ define([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "spacep
 		// anyway.
 		// Performance.
 		if (this.speed > 3) {
-			this.update = SpaceDog.prototype.update2;
+			this.update = SpaceDog.prototype.drift;
 		}
 
 		// Shrink

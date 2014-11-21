@@ -217,7 +217,7 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 			startBanner.setVelocity(5, 0);
 
             // If the score is a square...
-		    var squareOfScore = Math.sqrt(vg.getScore());
+		    var squareOfScore = Math.sqrt(vg.getScore() - 5);
             if (squareOfScore === Math.ceil(squareOfScore)) {
                 // Add a puppy!
                 var puppy = new SpacePuppy(dog.x, dog.y, 48*2, 44*2, function() {});
@@ -226,6 +226,9 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 			    };
                 puppy.aboutFace();
                 a.add(1, puppy);
+                // Stop the main dog.
+                dog.setVelocity(0, 0);
+                dog.update = dog.floatInPlace;
             }
 		};
 		a.add(1, dog);
