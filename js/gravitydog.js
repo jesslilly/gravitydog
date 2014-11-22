@@ -239,7 +239,8 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		        puppy.draw = function(ctx) {
 			        ctx.drawImage(sprites, 0, 315, 48, 44, this.x, this.y, this.width, this.height);
 			    };
-                puppy.aboutFace();
+		        puppy.aboutFace();
+                puppy.moveForward(50);
                 a.add(1, puppy);
                 // Stop the main dog.
                 dog.setVelocity(0, 0);

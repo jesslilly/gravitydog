@@ -59,6 +59,11 @@ define([ "vg/prop" ], function(Prop) {
 		return pair;
 	};
 
+	Sprite.prototype.moveForward = function (frames) {
+	    this.x = this.x + (this.vx * frames);
+	    this.y = this.y + (this.vy * frames);
+	};
+
 	// b for boundary.
 	Sprite.bWidth = 100;
 	Sprite.bHeight = 100;

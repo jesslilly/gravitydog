@@ -4,8 +4,7 @@ Gravity Dog
 Play [Gravity Dog](http://www.sparkyland.com/gravitydog) for free!  It's fun!
 
 # TODO
-1. Add one of those apple-favicon thingies.  (https://developer.apple.com/library/iad/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html)
-1. I need a favicon!
+1. Add an "add to home screen" link.
 1. Intro screen touch ups.
 2. Look into offline cache to play the game offline.
 1. Find tutorial/how to for iOS 7 mobile Adsense unit. 
