@@ -140,8 +140,8 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 			newGame();
 		};
 	    play.update = function() {
-	        this.vOscillate(1);
-	    }
+	        this.iconJump(25);
+	    };
 		a.add(2, play);
 
 		var japanese = new Prop(110, 390, 52 * 2, 17 * 2);
@@ -150,10 +150,13 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		};
 		a.add(2, japanese);
 
-		var spaceDog = new Prop(240, 200, 118 * 5, 88 * 5);
+		var spaceDog = new Clickable(240, 200, 118 * 5, 88 * 5);
 		spaceDog.draw = function (ctx) {
 		    ctx.drawImage(sprites, 0, 0, 118, 88, this.x, this.y, this.width, this.height);
 		};
+	    spaceDog.update = function() {
+	        this.vOscillate(1);
+	    };
 		a.add(2, spaceDog);
 
 		a.go();

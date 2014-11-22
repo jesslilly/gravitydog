@@ -47,6 +47,32 @@ define([ "vg/prop" ], function(Prop) {
 		this.x += this.vx;
 		this.y += this.vy + Math.sin(this.oscillateOffset * Math.PI / 180);
 	};
+    //// Assign this method to a sprite update function to make it oscillate.
+	//Sprite.prototype.oscillateBox = function () {
+	//    if (!this.oscillateOffset) {
+	//        this.oscillateOffset = 0;
+	//    }
+	//    this.oscillateOffset += 4; // 4 degrees.
+
+	//    this.width = this.width + Math.sin(this.oscillateOffset * Math.PI / 180);
+	//    this.height = this.height - Math.sin(this.oscillateOffset * Math.PI / 180);
+    //};
+
+    // Assign this method to a sprite update function to make it oscillate.
+	Sprite.prototype.iconJump = function (jumpHeight) {
+	    if (!this.oscillateOffset) {
+	        this.oscillateOffset = 0;
+	    }
+	    if (!this.baseLineY) {
+	        this.baseLineY = this.y;
+	    }
+	    this.oscillateOffset += 4; // 4 degrees.
+
+	    var offset = -Math.sin(this.oscillateOffset * Math.PI / 180) * jumpHeight;
+	    if (this.y - offset < this.baseLineY) {
+	        this.y = this.baseLineY - offset;
+	    }
+	};
 
 
 	Sprite.vectorToVelocity = function(degrees, speed) {

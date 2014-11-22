@@ -5,7 +5,6 @@ Play [Gravity Dog](http://www.sparkyland.com/gravitydog) for free!  It's fun!
 
 # TODO
 1. Add an "add to home screen" link.
-1. Intro screen touch ups.
 2. Look into offline cache to play the game offline.
 1. Find tutorial/how to for iOS 7 mobile Adsense unit. 
 1. Revert commits for responsive ad attempt.
