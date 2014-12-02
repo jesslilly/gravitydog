@@ -9,9 +9,6 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 
 	// var ad = document.getElementsByClassName('gravity-dog-ad')[0];
 
-	var scaleFactor = 1; // It's always a square, so it's the same for x and
-	// y.
-
 	if (!canvas.getContext) {
 		alert("Shucks!  Try a different browser please?");
 	}
@@ -25,45 +22,64 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 	var a = null;
 	var startBanner = null;
 
-	var main = function() {
+	var main = function () {
 
-		// Resize the canvas to a square that fits in the viewport.
-		var vpw = verge.viewportW();
-		var vph = verge.viewportH();
-		var orientation = (vpw > vph) ? "landscape" : "portrait";
-		var smaller = (vpw > vph) ? vph : vpw;
+	    addResizeHandler();
 
-		// Don't change the canvas size programatically. I want the canvas to
-		// always be the same so point, 10,10 is always the same. What changes
-		// is the
-		// CSS w/h to scale the entire canvas to fit the actual screen size.
-		// canvas.width = smaller;
-		// canvas.height = smaller;
+	    // Create an animator. Refresh at 17ms which is 60Hz.
+		a = new Animator(ctx, 17, 1);
 
-		canvas.style.width = smaller + "px";
-		canvas.style.height = smaller + "px";
-		canvas.style.background = '#000000';
-		if (orientation === "landscape") {
-		    document.getElementById('content').style.height = smaller + "px";
-		    document.getElementById('content').style.width = (smaller * 1.5) + "px";
-			// ad.style.height = smaller + "px";
-			// ad.style.width = (smaller * .5) + "px";
-		} else {
-			document.getElementById('content').style.width = smaller + "px";
-			document.getElementById('content').style.height = (smaller * 1.5) + "px";
-			// ad.style.width = smaller + "px";
-			// ad.style.height = (smaller * .5) + "px";
-		}
-		/* http://stackoverflow.com/questions/7791286/getting-correct-mouse-position-on-canvas-when-canvas-size-is-relative */
-		scaleFactor = canvas.width / smaller;
-
-		// Create an animator. Refresh at 17ms which is 60Hz.
-		a = new Animator(ctx, 17, scaleFactor);
+	    setCanvasSize();
 
 		Sprite.bWidth = canvas.width;
 		Sprite.bHeight = canvas.height;
 		introScreen();
-	};
+    };
+
+    var setCanvasSize = function() {
+	    // Resize the canvas to a square that fits in the viewport.
+		var vpw = verge.viewportW();
+		var vph = verge.viewportH();
+		var orientation = (vpw > vph) ? "landscape": "portrait";
+		var smaller = (vpw > vph) ? vph: vpw;
+
+	    // Don't change the canvas size programatically. I want the canvas to
+	    // always be the same so point, 10,10 is always the same. What changes
+	    // is the
+	    // CSS w/h to scale the entire canvas to fit the actual screen size.
+	    // canvas.width = smaller;
+	    // canvas.height = smaller;
+
+        // Viewport will expant via the viewport meta tag (Mobile)
+        // OR this code right here. (Desktops)
+		if (vpw > 480 || vph > 480) {
+		    canvas.style.width = smaller + "px";
+		    canvas.style.height = smaller + "px";
+		    canvas.style.background = '#000000';
+		    if (orientation === "landscape") {
+		        document.getElementById('content').style.height = smaller + "px";
+		        document.getElementById('content').style.width = (smaller * 1.5) + "px";
+		    } else {
+			        document.getElementById('content').style.width = smaller + "px";
+			        document.getElementById('content').style.height = (smaller * 1.5) + "px";
+		    }
+	        /* http://stackoverflow.com/questions/7791286/getting-correct-mouse-position-on-canvas-when-canvas-size-is-relative */
+		    var newScaleFactor = canvas.width / smaller;
+		    a.setScaleFactor(newScaleFactor);
+		}
+    }
+
+    var resizeHandler = function(event) {
+        setCanvasSize();
+    };
+
+    var addResizeHandler = function() {
+        if (window.addEventListener) {
+            window.addEventListener("resize", resizeHandler, false);
+        } else if (window.attachEvent) {
+            window.attachEvent("onresize", resizeHandler);
+        }
+    };
 
 	var introScreen = function() {
 		a.clear();

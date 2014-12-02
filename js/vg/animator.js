@@ -8,15 +8,15 @@ define([ "vg/prop", "vg/clickable", "vg/sprite" ], function(Prop, Clickable, Spr
 	var sprites = [ [], [], [] ];
 	var clickables = [];
 	var self;
-	var scaleFactor = 1;
 	var intervalId = 0;
 	var i500Counter = 0;
 
-	// I considered making this a singleton, but maybe not for now!
+    // I considered making this a singleton, but maybe not for now!
+    // There is no x and y for scale since we are using a square board.
 	var Animator = function(context, i, scale) {
 		ctx = context;
 		interval = i;
-		scaleFactor = scale;
+		this.scaleFactor = scale;
 		self = this;
 
 		// Set up the click handler.
@@ -24,10 +24,10 @@ define([ "vg/prop", "vg/clickable", "vg/sprite" ], function(Prop, Clickable, Spr
 		var xoffset = canvas.offsetLeft + 2;
 		var yoffset = canvas.offsetTop + 2;
 		var click = function(e) {
-			var x = Math.round((e.pageX - xoffset) * scaleFactor);
-			var y = Math.round((e.pageY - yoffset) * scaleFactor);
+		    var x = Math.round((e.pageX - xoffset) * self.scaleFactor);
+		    var y = Math.round((e.pageY - yoffset) * self.scaleFactor);
 			console.log("Click at " + x + "," + y + " using scale "
-					+ scaleFactor);
+					+ self.scaleFactor);
 			self.onClick(x, y);
 		};
 		if (canvas.addEventListener) {
@@ -47,6 +47,11 @@ define([ "vg/prop", "vg/clickable", "vg/sprite" ], function(Prop, Clickable, Spr
 				e.preventDefault();
 			});
 		}
+	};
+
+	Animator.prototype.setScaleFactor = function (scale) {
+	    this.scaleFactor = scale;
+	    return this;
 	};
 
 	Animator.prototype.onClick = function(cx, cy) {
