@@ -23,28 +23,30 @@ define([ "vg/prop", "vg/clickable", "vg/sprite" ], function(Prop, Clickable, Spr
 		var canvas = document.getElementById('canvas');
 		var xoffset = canvas.offsetLeft + 2;
 		var yoffset = canvas.offsetTop + 2;
-		var click = function(e) {
-		    var x = Math.round((e.pageX - xoffset) * self.scaleFactor);
-		    var y = Math.round((e.pageY - yoffset) * self.scaleFactor);
+		var click = function(clickX, clickY) {
+		    var x = Math.round((clickX - xoffset) * self.scaleFactor);
+		    var y = Math.round((clickY - yoffset) * self.scaleFactor);
 			console.log("Click at " + x + "," + y + " using scale "
 					+ self.scaleFactor);
 			self.onClick(x, y);
 		};
 		if (canvas.addEventListener) {
-			canvas.addEventListener("mousedown", click, false);
+			canvas.addEventListener("mousedown", function(e) {
+			    click(e.pageX, e.pageY);
+			}, false);
 			canvas.addEventListener("touchstart", function(e) {
 				// This prevents both actions from firing on a mobile.
-				// Also prevents other actions like screen resize which is good!
-				click(e);
-				e.stopPropagation();
-				e.preventDefault();
+			    // Also prevents other actions like screen resize which is good!
+			    e.preventDefault();
+			    click(e.touches[0].pageX, e.touches[0].pageY);
 			}, false);
 		} else if (canvas.attachEvent) {
-			canvas.attachEvent("onmousedown", click);
-			canvas.attachEvent("ontouchstart", function(e) {
-				click(e);
-				e.stopPropagation();
-				e.preventDefault();
+		    canvas.attachEvent("onmousedown", function (e) {
+		        click(e.pageX, e.pageY);
+		    });
+			canvas.attachEvent("ontouchstart", function (e) {
+			    e.preventDefault();
+			    click(e.touches[0].pageX, e.touches[0].pageY);
 			});
 		}
 	};
