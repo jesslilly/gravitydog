@@ -4,7 +4,6 @@ Gravity Dog
 Play [Gravity Dog](http://www.sparkyland.com/gravitydog) for free!  It's fun!
 
 # TODO
-1. Click handler not working on Samsung S5.  not working in chrome Mobile simulator either. 
 2. Look into offline cache to play the game offline.
 
 ##Future
