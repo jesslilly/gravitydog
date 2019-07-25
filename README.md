@@ -28,7 +28,6 @@ Review the github logs.
 * One of the levels should have LOTS of dogs and puppies.  Puppies could have accessories.
 * Points are eggs, or waffles
 * Characters are kitties, robots, or robo-kitties.
-* cameos: Lego brick, Mario?, Sonic?
 
-# Other simple game ideas:
-* Pixel draw
+# To Develop
+* Clone the repo.  Open C:\myrepos\gravitydog\index.html in a browser.  Sometimes scripts have issues when you use file:// protocol.  If that happens, use a realy (localhost) web server.
