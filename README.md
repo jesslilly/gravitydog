@@ -30,4 +30,5 @@ Play [Gravity Dog](http://www.sparkyland.com/gravitydog) for free!  It's fun!
 * Characters are kitties, robots, or robo-kitties.
 
 # To Develop
-* Clone the repo.  Open C:\myrepos\gravitydog\index.html in a browser.  Sometimes scripts have issues when you use file:// protocol.  If that happens, use a real (localhost) web server.
+* Clone the repo.  Open file:///C:/work/gravitydog/index.max.html in a browser.  Sometimes scripts have issues when you use file:// protocol.  If that happens, use a real (localhost) web server.
+* There is a build step too.  I forget what that is!  LOL
