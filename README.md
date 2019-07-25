@@ -10,7 +10,7 @@ Play [Gravity Dog](http://www.sparkyland.com/gravitydog) for free!  It's fun!
 1. Buzz mode indicator. More legible at small size. 
 2. Look into offline cache to play the game offline.
 
-##Future
+## Future
 1. Add an "add to home screen" link.
 1. Facebook sharing
 1. framework improvement: Better constructor for Prop/Sprite that takes an image name.
