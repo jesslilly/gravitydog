@@ -22,7 +22,7 @@ Play [Gravity Dog](http://www.sparkyland.com/gravitydog) for free!  It's fun!
 1. intro animation;  Space dog's spaceship blows up.
 
 # Done
-Review the github logs.
+1. See github logs for list of improvements.
 
 # Ideas
 * One of the levels should have LOTS of dogs and puppies.  Puppies could have accessories.
@@ -30,4 +30,4 @@ Review the github logs.
 * Characters are kitties, robots, or robo-kitties.
 
 # To Develop
-* Clone the repo.  Open C:\myrepos\gravitydog\index.html in a browser.  Sometimes scripts have issues when you use file:// protocol.  If that happens, use a realy (localhost) web server.
+* Clone the repo.  Open C:\myrepos\gravitydog\index.html in a browser.  Sometimes scripts have issues when you use file:// protocol.  If that happens, use a real (localhost) web server.

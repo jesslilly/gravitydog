@@ -215,7 +215,6 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 
 				bg.draw = function() {
 				};
-				ctx.rotate(1 * Math.PI / 180);
 		        a.customAnimationHook = function() {};
 		    }
 		};
