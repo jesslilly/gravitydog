@@ -4,9 +4,8 @@ Gravity Dog
 Play [Gravity Dog](http://www.sparkyland.com/gravitydog) for free!  It's fun!
 
 # TODO
-1. touch indicator
-1. Alternate bugs mode at 100s. 
-1. Full screen?
+1. touch indicator: make dog 90% smaller on touch begin. 100% on touch end. 
+1. Change ready go to tap the dog
 1. Buzz mode indicator. More legible at small size. 
 2. Look into offline cache to play the game offline.
 
