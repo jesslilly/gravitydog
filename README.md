@@ -6,8 +6,6 @@ Gravity Dog
 1. Change ready go to tap the dog
 1. Buzz mode indicator. More legible at small size. 
 2. Look into offline cache to play the game offline.
-
-## Future
 1. Add an "add to home screen" link.
 
 # Done
