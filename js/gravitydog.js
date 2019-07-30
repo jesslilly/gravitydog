@@ -246,7 +246,7 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		};
 		dog.click = function() {
 		    SpaceDog.prototype.click.call(this);
-		    startBanner.msg = "GO!!!!!";
+		    startBanner.msg = "KEEP TAPPING!";
 			startBanner.setVelocity(5, 0);
 
             // If the score is a square...
@@ -291,8 +291,8 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		a.add(0, bg);
 
 		// levelBanner
-		startBanner = new Sprite(150, 100, 0, 0);
-	    startBanner.msg = "READY??";
+		startBanner = new Sprite(50, 150, 0, 0);
+	    startBanner.msg = "TAP THE DOG";
 		startBanner.draw = function(ctx) {
 			ctx.font = "32pt silkscreennormal";
 			ctx.fillStyle = "black";
@@ -316,7 +316,7 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 	var gameOver = function () {
 
 		// Popup
-		var popup = new Prop(120, 120, 240, 160, "rgba(255, 255, 255, .8)");
+		var popup = new Prop(120, 120, 240, 160, "rgba(255, 255, 255, .65)");
 		a.add(2, popup);
 
 		// Words
