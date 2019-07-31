@@ -22,9 +22,9 @@ define([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "spacep
 	// Initial "update" is just sitting there and oscillating.
 	SpaceDog.prototype.update = SpaceDog.prototype.floatInPlace;
 
-	SpaceDog.prototype.click = function() {
+	SpaceDog.prototype.clickBegin = function() {
 
-	    SpacePuppy.prototype.click.call(this);
+	    SpacePuppy.prototype.clickBegin.call(this);
 
 		// Remove vOscillate at a certain speed since you can't see it
 		// anyway.

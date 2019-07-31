@@ -85,12 +85,7 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		a.clear();
 
 		// Draw background.
-		var bg = new Clickable(0, 0, canvas.width, canvas.height, "#000000");
-		bg.update = function () {
-		};
-		bg.click = function () {
-		    newGame();
-		};
+		var bg = new Prop(0, 0, canvas.width, canvas.height, "#000000");
 		a.add(0, bg);
 
 	    // Add star field!
@@ -152,7 +147,7 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		play.draw = function(ctx) {
 			ctx.drawImage(sprites, 132, 40, 30, 30, this.x, this.y, this.width, this.height);
 		};
-		play.click = function() {
+		play.clickEnd = function() {
 			newGame();
 		};
 	    play.update = function() {
@@ -196,7 +191,7 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		};
 		a.add(0, bg);
 		// Go into buggy animation level when you get a nice high score.
-		// TODO: Improve efficiency by moving this check to SpaceDog.click.
+		// TODO: Improve efficiency by moving this check to SpaceDog.clickBegin.
 		a.customAnimationHook = function() {
 		    if (vg.getScore() >= bugzModeScore) {
 
@@ -244,8 +239,8 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		dog.draw = function(ctx) {
 			ctx.drawImage(sprites, 0, 0, 118, 88, this.x, this.y, this.width, this.height);
 		};
-		dog.click = function() {
-		    SpaceDog.prototype.click.call(this);
+		dog.clickBegin = function() {
+		    SpaceDog.prototype.clickBegin.call(this);
 		    startBanner.msg = "KEEP TAPPING!";
 			startBanner.setVelocity(5, 0);
 
@@ -339,7 +334,7 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		home.draw = function(ctx) {
 			ctx.drawImage(sprites, 132, 74, 30, 30, this.x, this.y, this.width, this.height);
 		};
-		home.click = function() {
+		home.clickEnd = function() {
 			introScreen();
 		};
 		a.add(2, home);
@@ -349,7 +344,7 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		play.draw = function(ctx) {
 			ctx.drawImage(sprites, 132, 40, 30, 30, this.x, this.y, this.width, this.height);
 		};
-		play.click = function() {
+		play.clickEnd = function() {
 			newGame();
 		};
 		a.add(2, play);

@@ -23,30 +23,55 @@ define([ "vg/prop", "vg/clickable", "vg/sprite" ], function(Prop, Clickable, Spr
 		var canvas = document.getElementById('canvas');
 		var xoffset = canvas.offsetLeft + 2;
 		var yoffset = canvas.offsetTop + 2;
-		var click = function(clickX, clickY) {
+		var clickBegin = function(clickX, clickY) {
 		    var x = Math.round((clickX - xoffset) * self.scaleFactor);
 		    var y = Math.round((clickY - yoffset) * self.scaleFactor);
-			console.log("Click at " + x + "," + y + " using scale "
+			console.log("ClickBegin at " + x + "," + y + " using scale "
 					+ self.scaleFactor);
-			self.onClick(x, y);
+			self.onClickBegin(x, y);
 		};
+		var clickEnd = function(clickX, clickY) {
+		    var x = Math.round((clickX - xoffset) * self.scaleFactor);
+		    var y = Math.round((clickY - yoffset) * self.scaleFactor);
+			console.log("ClickEnd at " + x + "," + y + " using scale "
+					+ self.scaleFactor);
+			self.onClickEnd(x, y);
+		};
+
+		// Event listeners:
+		// preventDefault prevents both mouse and touch events from firing on a mobile.
+		// Also prevents other actions like screen resize which is good!
+		// https://stackoverflow.com/a/16216841/1804678
+
 		if (canvas.addEventListener) {
 			canvas.addEventListener("mousedown", function(e) {
-			    click(e.pageX, e.pageY);
+			    clickBegin(e.pageX, e.pageY);
 			}, false);
 			canvas.addEventListener("touchstart", function(e) {
-				// This prevents both actions from firing on a mobile.
-			    // Also prevents other actions like screen resize which is good!
 			    e.preventDefault();
-			    click(e.touches[0].pageX, e.touches[0].pageY);
+			    clickBegin(e.touches[0].pageX, e.touches[0].pageY);
+			}, false);
+			canvas.addEventListener("mouseup", function(e) {
+			    clickEnd(e.pageX, e.pageY);
+			}, false);
+			canvas.addEventListener("touchend", function(e) {
+			    e.preventDefault();
+			    clickEnd(e.touches[0].pageX, e.touches[0].pageY);
 			}, false);
 		} else if (canvas.attachEvent) {
 		    canvas.attachEvent("onmousedown", function (e) {
-		        click(e.pageX, e.pageY);
+		        clickBegin(e.pageX, e.pageY);
 		    });
 			canvas.attachEvent("ontouchstart", function (e) {
 			    e.preventDefault();
-			    click(e.touches[0].pageX, e.touches[0].pageY);
+			    clickBegin(e.touches[0].pageX, e.touches[0].pageY);
+			});
+		    canvas.attachEvent("mouseup", function (e) {
+		        clickEnd(e.pageX, e.pageY);
+		    });
+			canvas.attachEvent("touchend", function (e) {
+			    e.preventDefault();
+			    clickEnd(e.touches[0].pageX, e.touches[0].pageY);
 			});
 		}
 	};
@@ -56,11 +81,21 @@ define([ "vg/prop", "vg/clickable", "vg/sprite" ], function(Prop, Clickable, Spr
 	    return this;
 	};
 
-	Animator.prototype.onClick = function(cx, cy) {
+	Animator.prototype.onClickBegin = function(cx, cy) {
 		clickables.forEach(function(clickable) {
 			if (clickable.clickTest(cx, cy)) {
-				clickable.click();
+				clickable.shrink();
+				clickable.clickBegin();
 			}
+		});
+	};
+
+	Animator.prototype.onClickEnd = function(cx, cy) {
+		clickables.forEach(function(clickable) {
+			if (clickable.clickTest(cx, cy)) {
+				clickable.clickEnd();
+			}
+			clickable.unshrink();
 		});
 	};
 

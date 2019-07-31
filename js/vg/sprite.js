@@ -74,7 +74,6 @@ define([ "vg/prop" ], function(Prop) {
 	    }
 	};
 
-
 	Sprite.vectorToVelocity = function(degrees, speed) {
 		var pair = {};
 		var radians = degrees * Math.PI / 180;

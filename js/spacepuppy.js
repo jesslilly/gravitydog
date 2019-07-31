@@ -35,7 +35,7 @@ define([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite" ], funct
 	    }
 	};
 
-	SpacePuppy.prototype.click = function() {
+	SpacePuppy.prototype.clickBegin = function() {
 
 		vg.scorePlus(1);
 
