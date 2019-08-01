@@ -26,15 +26,11 @@ define([ "vg/prop", "vg/clickable", "vg/sprite" ], function(Prop, Clickable, Spr
 		var clickBegin = function(clickX, clickY) {
 		    var x = Math.round((clickX - xoffset) * self.scaleFactor);
 		    var y = Math.round((clickY - yoffset) * self.scaleFactor);
-			console.log("ClickBegin at " + x + "," + y + " using scale "
-					+ self.scaleFactor);
 			self.onClickBegin(x, y);
 		};
 		var clickEnd = function(clickX, clickY) {
 		    var x = Math.round((clickX - xoffset) * self.scaleFactor);
 		    var y = Math.round((clickY - yoffset) * self.scaleFactor);
-			console.log("ClickEnd at " + x + "," + y + " using scale "
-					+ self.scaleFactor);
 			self.onClickEnd(x, y);
 		};
 
@@ -54,46 +50,56 @@ define([ "vg/prop", "vg/clickable", "vg/sprite" ], function(Prop, Clickable, Spr
 		// TODO: Remove duplicate code... haha.
 		if (canvas.addEventListener) {
 			canvas.addEventListener("mousedown", function(e) {
+				console.log("mousedown at " + e.pageX + "," + e.pageY);
 			    clickBegin(e.pageX, e.pageY);
 			}, false);
 			canvas.addEventListener("touchstart", function(e) {
 			    e.preventDefault();
 				lastTouchX = e.touches[0].pageX;
 				lastTouchY = e.touches[0].pageY;
+				console.log("touchstart at " + lastTouchX + "," + lastTouchY);
 			    clickBegin(lastTouchX, lastTouchY);
 			}, false);
 			canvas.addEventListener("mouseup", function(e) {
+				console.log("mouseup at " + e.pageX + "," + e.pageY);
 			    clickEnd(e.pageX, e.pageY);
 			}, false);
 			canvas.addEventListener("touchmove", function(e) {
 				e.preventDefault();
 				lastTouchX = e.touches[0].pageX;
 				lastTouchY = e.touches[0].pageY;
+				console.log("touchmove at " + lastTouchX + "," + lastTouchY);
 			}, false);
 			canvas.addEventListener("touchend", function(e) {
 			    e.preventDefault();
+				console.log("touchend at " + lastTouchX + "," + lastTouchY);
 			    clickEnd(lastTouchX, lastTouchY);
 			}, false);
 		} else if (canvas.attachEvent) {
 			canvas.attachEvent("mousedown", function(e) {
+				console.log("mousedown at " + e.pageX + "," + e.pageY);
 			    clickBegin(e.pageX, e.pageY);
 			});
 			canvas.attachEvent("touchstart", function(e) {
 			    e.preventDefault();
 				lastTouchX = e.touches[0].pageX;
 				lastTouchY = e.touches[0].pageY;
+				console.log("touchstart at " + lastTouchX + "," + lastTouchY);
 			    clickBegin(lastTouchX, lastTouchY);
 			});
 			canvas.attachEvent("mouseup", function(e) {
+				console.log("mouseup at " + e.pageX + "," + e.pageY);
 			    clickEnd(e.pageX, e.pageY);
 			});
 			canvas.attachEvent("touchmove", function(e) {
 				e.preventDefault();
 				lastTouchX = e.touches[0].pageX;
 				lastTouchY = e.touches[0].pageY;
+				console.log("touchmove at " + lastTouchX + "," + lastTouchY);
 			});
 			canvas.attachEvent("touchend", function(e) {
 			    e.preventDefault();
+				console.log("touchend at " + lastTouchX + "," + lastTouchY);
 			    clickEnd(lastTouchX, lastTouchY);
 			});
 		}
