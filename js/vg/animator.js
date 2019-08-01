@@ -47,8 +47,9 @@ define([ "vg/prop", "vg/clickable", "vg/sprite" ], function(Prop, Clickable, Spr
 
 		// Need to track touchmove coordinates since touchend does not have them.
 		// https://stackoverflow.com/a/4709593/1804678
-		var touchMoveX = 0;
-		var touchMoveY = 0;
+		// Also sometimes you don't get a touchmove, so use the touchstart coordinates.
+		var lastTouchX = 0;
+		var lastTouchY = 0;
 
 		// TODO: Remove duplicate code... haha.
 		if (canvas.addEventListener) {
@@ -57,39 +58,43 @@ define([ "vg/prop", "vg/clickable", "vg/sprite" ], function(Prop, Clickable, Spr
 			}, false);
 			canvas.addEventListener("touchstart", function(e) {
 			    e.preventDefault();
-			    clickBegin(e.touches[0].pageX, e.touches[0].pageY);
+				lastTouchX = e.touches[0].pageX;
+				lastTouchY = e.touches[0].pageY;
+			    clickBegin(lastTouchX, lastTouchY);
 			}, false);
 			canvas.addEventListener("mouseup", function(e) {
 			    clickEnd(e.pageX, e.pageY);
 			}, false);
 			canvas.addEventListener("touchmove", function(e) {
 				e.preventDefault();
-				touchMoveX = e.touches[0].pageX;
-				touchMoveY = e.touches[0].pageY;
+				lastTouchX = e.touches[0].pageX;
+				lastTouchY = e.touches[0].pageY;
 			}, false);
 			canvas.addEventListener("touchend", function(e) {
 			    e.preventDefault();
-			    clickEnd(touchMoveX, touchMoveY);
+			    clickEnd(lastTouchX, lastTouchY);
 			}, false);
 		} else if (canvas.attachEvent) {
-		    canvas.attachEvent("onmousedown", function (e) {
-		        clickBegin(e.pageX, e.pageY);
-		    });
-			canvas.attachEvent("ontouchstart", function (e) {
-			    e.preventDefault();
-			    clickBegin(e.touches[0].pageX, e.touches[0].pageY);
+			canvas.attachEvent("mousedown", function(e) {
+			    clickBegin(e.pageX, e.pageY);
 			});
-		    canvas.attachEvent("mouseup", function (e) {
-		        clickEnd(e.pageX, e.pageY);
-		    });
+			canvas.attachEvent("touchstart", function(e) {
+			    e.preventDefault();
+				lastTouchX = e.touches[0].pageX;
+				lastTouchY = e.touches[0].pageY;
+			    clickBegin(lastTouchX, lastTouchY);
+			});
+			canvas.attachEvent("mouseup", function(e) {
+			    clickEnd(e.pageX, e.pageY);
+			});
 			canvas.attachEvent("touchmove", function(e) {
 				e.preventDefault();
-				touchMoveX = e.touches[0].pageX;
-				touchMoveY = e.touches[0].pageY;
+				lastTouchX = e.touches[0].pageX;
+				lastTouchY = e.touches[0].pageY;
 			});
 			canvas.attachEvent("touchend", function(e) {
 			    e.preventDefault();
-			    clickEnd(touchMoveX, touchMoveY);
+			    clickEnd(lastTouchX, lastTouchY);
 			});
 		}
 	};
