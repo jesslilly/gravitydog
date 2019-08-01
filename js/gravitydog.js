@@ -306,7 +306,7 @@ require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "space
 		url.draw = function(ctx) {
 			ctx.font = "16pt Arial";
 			ctx.fillStyle = "rgba(225, 225, 225, 1)";
-			ctx.fillText("sparkyland.com/gravitydog", this.x, this.y);
+			ctx.fillText("jesslilly.github.io/gravitydog", this.x, this.y);
 		};
 		a.add(1, url);
 
