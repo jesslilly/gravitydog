@@ -1,5 +1,9 @@
 console.log("main.js loaded");
 
+if ('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('service-worker.js');
+  }
+
 require([ "vg/vg", "vg/animator", "vg/clickable", "vg/prop", "vg/sprite", "spacepuppy", "spacedog", "star" ], function(vg, Animator, Clickable, Prop, Sprite, SpacePuppy, SpaceDog, Star) {
 
 	var sprites = document.getElementById("sprites");
