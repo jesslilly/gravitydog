@@ -38,11 +38,19 @@ define([ "vg/prop", "vg/clickable", "vg/sprite" ], function(Prop, Clickable, Spr
 			self.onClickEnd(x, y);
 		};
 
+		// ================
 		// Event listeners:
+		// ================
 		// preventDefault prevents both mouse and touch events from firing on a mobile.
 		// Also prevents other actions like screen resize which is good!
 		// https://stackoverflow.com/a/16216841/1804678
 
+		// Need to track touchmove coordinates since touchend does not have them.
+		// https://stackoverflow.com/a/4709593/1804678
+		var touchMoveX = 0;
+		var touchMoveY = 0;
+
+		// TODO: Remove duplicate code... haha.
 		if (canvas.addEventListener) {
 			canvas.addEventListener("mousedown", function(e) {
 			    clickBegin(e.pageX, e.pageY);
@@ -54,9 +62,14 @@ define([ "vg/prop", "vg/clickable", "vg/sprite" ], function(Prop, Clickable, Spr
 			canvas.addEventListener("mouseup", function(e) {
 			    clickEnd(e.pageX, e.pageY);
 			}, false);
+			canvas.addEventListener("touchmove", function(e) {
+				e.preventDefault();
+				touchMoveX = e.touches[0].pageX;
+				touchMoveY = e.touches[0].pageY;
+			}, false);
 			canvas.addEventListener("touchend", function(e) {
 			    e.preventDefault();
-			    clickEnd(e.touches[0].pageX, e.touches[0].pageY);
+			    clickEnd(touchMoveX, touchMoveY);
 			}, false);
 		} else if (canvas.attachEvent) {
 		    canvas.attachEvent("onmousedown", function (e) {
@@ -69,9 +82,14 @@ define([ "vg/prop", "vg/clickable", "vg/sprite" ], function(Prop, Clickable, Spr
 		    canvas.attachEvent("mouseup", function (e) {
 		        clickEnd(e.pageX, e.pageY);
 		    });
-			canvas.attachEvent("touchend", function (e) {
+			canvas.attachEvent("touchmove", function(e) {
+				e.preventDefault();
+				touchMoveX = e.touches[0].pageX;
+				touchMoveY = e.touches[0].pageY;
+			});
+			canvas.attachEvent("touchend", function(e) {
 			    e.preventDefault();
-			    clickEnd(e.touches[0].pageX, e.touches[0].pageY);
+			    clickEnd(touchMoveX, touchMoveY);
 			});
 		}
 	};
