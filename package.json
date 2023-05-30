@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/jesslilly/gravitydog",
   "devDependencies": {
-    "express": "3.1.x",
+    "express": "3.21.x",
     "gulp": "3.8.x",
     "gulp-concat": "~2.2.0",
     "gulp-uglify": "~0.2.1",
